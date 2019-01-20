@@ -9,6 +9,8 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 
+import Visuals from './src/views/Visuals';
+
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
@@ -22,9 +24,7 @@ export default class App extends Component<Props> {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>Welcome to What I Watched!</Text>
-        <Text>Do another Test to see if it is working.</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+        <Visuals />
       </View>
     );
   }
@@ -33,8 +33,8 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
   welcome: {
