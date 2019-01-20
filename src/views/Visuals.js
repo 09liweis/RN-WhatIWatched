@@ -27,6 +27,7 @@ export default class Visuals extends Component {
       	<Text>Visual List Page {this.state.visuals.length}</Text>
       	<FlatList
 				  data={this.state.visuals}
+				  keyExtractor={item => item.id.toString()}
 				  renderItem={({item}) => <Text>{item.title}</Text>}
 				/>
       </View>
