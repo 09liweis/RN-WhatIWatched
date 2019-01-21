@@ -8,6 +8,8 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
+import {createStackNavigator, createAppContainer} from 'react-navigation';
+
 
 import Visuals from './src/views/Visuals';
 
@@ -21,6 +23,12 @@ const instructions = Platform.select({
 type Props = {};
 export default class App extends Component<Props> {
   render() {
+    return <AppContainer />
+  }
+}
+
+class Home extends Component<Props> {
+  render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>Welcome to What I Watched!</Text>
@@ -29,6 +37,20 @@ export default class App extends Component<Props> {
     );
   }
 }
+
+const AppStackNavigator = createStackNavigator(
+{
+  Home: Home
+},
+{
+  defaultNavigationOptions: {
+    headerStyle: {
+      backgroundColor: 'orange'
+    }
+  }
+}
+);
+const AppContainer = createAppContainer(AppStackNavigator);
 
 const styles = StyleSheet.create({
   container: {

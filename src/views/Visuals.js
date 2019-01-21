@@ -25,7 +25,6 @@ export default class Visuals extends Component {
 		})
 	}
   render() {
-  	const { navigate } = this.props.navigation;
     return (
       <View>
       	<Text>Visual List Page {this.state.visuals.length}</Text>
