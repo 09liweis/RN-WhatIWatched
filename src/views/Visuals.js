@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, FlatList} from 'react-native';
+import {Platform, StyleSheet, Text, View, FlatList, Image, TouchableOpacity} from 'react-native';
 
 export default class Visuals extends Component {
+	static navigationOptions = {
+    title: 'Welcome',
+  };
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -22,13 +25,23 @@ export default class Visuals extends Component {
 		})
 	}
   render() {
+  	const { navigate } = this.props.navigation;
     return (
       <View>
       	<Text>Visual List Page {this.state.visuals.length}</Text>
       	<FlatList
 				  data={this.state.visuals}
 				  keyExtractor={item => item.id.toString()}
-				  renderItem={({item}) => <Text>{item.title}</Text>}
+				  renderItem={({item}) =>
+				  	<TouchableOpacity onPress={() => console.log('Test')}>
+					  	<View style={{flex: 1, flexDirection: 'row', marginBottom: 15}}>
+					  		<Image style={{width: '30%', height: 200}} source={{uri: item.poster}} />
+					  		<View style={{marginLeft: 15}}>
+					  			<Text style={{fontSize: 24}}>{item.title}</Text>
+					  		</View>
+					  	</View>
+				  	</TouchableOpacity>
+				  }
 				/>
       </View>
     );
