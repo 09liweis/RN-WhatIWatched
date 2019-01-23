@@ -15,7 +15,6 @@ export default class Visuals extends Component {
 		fetch('https://what-i-watched.herokuapp.com/api/visuals')
 		.then(res => res.json())
 		.then((res) => {
-			console.log(res)
 			this.setState({
 				visuals: res.results
 			})
