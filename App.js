@@ -38,7 +38,7 @@ class Home extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Visuals />
+        <Visuals navigation={this.props.navigation} />
       </View>
     );
   }
@@ -48,6 +48,9 @@ const AppStackNavigator = createStackNavigator(
 {
   Home: Home,
   VisualForm: VisualForm
+},
+{
+  initialRouteName: 'Home'
 },
 {
   defaultNavigationOptions: {
