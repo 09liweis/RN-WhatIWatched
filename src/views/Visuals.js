@@ -4,6 +4,9 @@ import {Platform, StyleSheet, Text, View, FlatList, Image, TouchableOpacity} fro
 export default class Visuals extends Component {
 	static navigationOptions = {
     title: 'Welcome',
+    headerStyle: {
+    	backgroundColor: 'green'
+    }
   };
 	constructor(props) {
 		super(props);

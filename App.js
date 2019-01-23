@@ -12,6 +12,7 @@ import {createStackNavigator, createAppContainer} from 'react-navigation';
 
 
 import Visuals from './src/views/Visuals';
+import VisualForm from './src/views/VisualForm';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -40,7 +41,8 @@ class Home extends Component<Props> {
 
 const AppStackNavigator = createStackNavigator(
 {
-  Home: Home
+  Home: Home,
+  VisualForm: VisualForm
 },
 {
   defaultNavigationOptions: {
