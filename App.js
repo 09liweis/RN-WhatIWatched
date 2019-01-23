@@ -29,10 +29,15 @@ export default class App extends Component<Props> {
 }
 
 class Home extends Component<Props> {
+  static navigationOptions = {
+    title: 'Welcome to What I Watched!',
+    headerStyle: {
+      backgroundColor: 'green'
+    }
+  };
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to What I Watched!</Text>
         <Visuals />
       </View>
     );
