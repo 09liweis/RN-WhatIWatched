@@ -3,12 +3,12 @@ import {Platform, StyleSheet, Text, View, FlatList, Image, TouchableOpacity} fro
 
 export default class VisualForm extends Component {
 	static navigationOptions = {
-    title: 'Welcome',
+    title: 'Add New Visual',
   };
 	constructor(props) {
 		super(props);
 		this.state = {
-			searchs: []
+			searchs: [],
 			visual: {
 				id: 0,
         title: '',
