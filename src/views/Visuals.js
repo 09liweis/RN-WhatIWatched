@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, FlatList, Image, TouchableOpacity} from 'react-native';
+import {Platform, StyleSheet, Text, Button, View, FlatList, Image, TouchableOpacity} from 'react-native';
 
 
 export default class Visuals extends Component {
@@ -41,6 +41,7 @@ export default class Visuals extends Component {
 					  		<Image style={{width: '30%', height: 200}} source={{uri: item.poster}} />
 					  		<View style={{marginLeft: 15}}>
 					  			<Text style={{fontSize: 24}}>{item.title}</Text>
+					  			<Button style={{width: 40}} title="+1" color="#841584" />
 					  		</View>
 					  	</View>
 				  	</TouchableOpacity>
