@@ -36,7 +36,7 @@ export default class Visuals extends Component {
 				  data={this.state.visuals}
 				  keyExtractor={item => item.id.toString()}
 				  renderItem={({item}) =>
-				  	<TouchableOpacity onPress={() => navigation.navigate('VisualForm')}>
+				  	<TouchableOpacity onPress={() => navigation.navigate('VisualDetail',{visual: item})}>
 					  	<View style={{flex: 1, flexDirection: 'row', marginBottom: 15}}>
 					  		<Image style={{width: '30%', height: 200}} source={{uri: item.poster}} />
 					  		<View style={{marginLeft: 15}}>
