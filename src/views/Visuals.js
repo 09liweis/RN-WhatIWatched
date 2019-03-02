@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, Button, View, FlatList, Image, TouchableOpacity} from 'react-native';
+import {Platform, StyleSheet, Text, Button, View, FlatList, Image, TouchableOpacity, TextInput} from 'react-native';
 
 
 export default class Visuals extends Component {
@@ -12,11 +12,32 @@ export default class Visuals extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			visuals: []
+			visuals: [],
+			search: '',
+			api: 'https://what-i-watched.herokuapp.com/api/visuals'
 		}
 	}
 	componentDidMount() {
-		fetch('https://what-i-watched.herokuapp.com/api/visuals')
+		fetch(this.state.api)
+		.then(res => res.json())
+		.then((res) => {
+			this.setState({
+				visuals: res.results
+			})
+		})
+		.catch((err) => {
+			console.error(err);
+		})
+	}
+	searchVisual(search) {
+		this.setState({search});
+		let url;
+		if (search == '') {
+			url = this.state.api;
+		} else {
+			url = 'https://what-i-watched.herokuapp.com/api/search?keyword=' + search;
+		}
+		fetch(url)
 		.then(res => res.json())
 		.then((res) => {
 			this.setState({
@@ -32,6 +53,11 @@ export default class Visuals extends Component {
     return (
       <View>
       	<Text>Visual List Page {this.state.visuals.length}</Text>
+      	<TextInput
+	        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+	        onChangeText={(search) => this.searchVisual(search)}
+	        value={this.state.search}
+	      />
       	<FlatList
 				  data={this.state.visuals}
 				  keyExtractor={item => item.id.toString()}
