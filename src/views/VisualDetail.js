@@ -11,6 +11,7 @@ export default class VisualDetail extends Component {
 		this.state = {
 			visual: navigation.getParam('visual')
 		}
+    this.increaseEpisode = this.increaseEpisode.bind(this)
 	}
 	componentDidMount() {
 		
