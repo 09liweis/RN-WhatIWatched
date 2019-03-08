@@ -67,7 +67,7 @@ export default class Visuals extends Component {
 					  	<View style={styles.VisualRow}>
 					  		<Image style={styles.VisualImage} source={{uri: item.poster}} />
 					  		<View style={styles.VisualDetail}>
-					  			<Text style={[styles.VisualTitle, styles.VisualText]}>{item.title}</Text>
+					  			<Text style={[styles.VisualText, styles.VisualTitle]}>{item.title}</Text>
 									<Text style={styles.VisualText}>豆瓣评分: {item.douban_rating}</Text>
 									<Text style={styles.VisualText}>IMDB: {item.imdb_rating}</Text>
 									<Text style={styles.VisualText}>{item.release_date}</Text>
@@ -125,7 +125,8 @@ const styles = StyleSheet.create({
 		padding: 20
 	},
 	VisualText: {
-		color: '#FFFFFF'
+		color: '#FFFFFF',
+		fontSize: 16
 	},
 	VisualTitle: {
 		fontSize: 24
