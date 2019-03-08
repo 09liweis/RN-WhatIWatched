@@ -51,7 +51,7 @@ export default class Visuals extends Component {
   render() {
   	const {navigation} = this.props;
     return (
-      <View>
+      <View style={styles.MainContainer}>
       	<Text>Visual List Page {this.state.visuals.length}</Text>
       	<TextInput
 	        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
@@ -63,14 +63,14 @@ export default class Visuals extends Component {
 				  keyExtractor={item => item.id.toString()}
 				  renderItem={({item}) =>
 				  	<TouchableOpacity onPress={() => navigation.navigate('VisualDetail',{visual: item})}>
-					  	<View style={{flex: 1, flexDirection: 'row', marginBottom: 15}}>
+					  	<View style={styles.VisualRow}>
 					  		<Image style={{width: '30%', height: 200}} source={{uri: item.poster}} />
 					  		<View style={{marginLeft: 15}}>
-					  			<Text style={{fontSize: 24}}>{item.title}</Text>
-									<Text>豆瓣评分: {item.douban_rating}</Text>
-									<Text>IMDB: {item.imdb_rating}</Text>
-									<Text>{item.release_date}</Text>
-									<Text>{item.current_episode}/{item.episodes}</Text>
+					  			<Text style={[styles.VisualTitle, styles.VisualText]}>{item.title}</Text>
+									<Text style={styles.VisualText}>豆瓣评分: {item.douban_rating}</Text>
+									<Text style={styles.VisualText}>IMDB: {item.imdb_rating}</Text>
+									<Text style={styles.VisualText}>{item.release_date}</Text>
+									<Text style={styles.VisualText}>{item.current_episode}/{item.episodes}</Text>
 					  		</View>
 					  	</View>
 				  	</TouchableOpacity>
@@ -94,11 +94,25 @@ export default class Visuals extends Component {
 
 const styles = StyleSheet.create({
   MainContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5F5F5',
-  },
+		color: '#FFFFFF',
+    backgroundColor: '#090f2b',
+	},
+	
+	VisualRow: {
+		flex: 1,
+		flexDirection: 'row',
+		marginBottom: 15,
+		marginLeft: 15,
+		marginRight: 15
+	},
+
+	VisualText: {
+		color: '#FFFFFF'
+	},
+
+	VisualTitle: {
+		fontSize: 24
+	},
 
   TouchableOpacityStyle: {
     position: 'absolute',
