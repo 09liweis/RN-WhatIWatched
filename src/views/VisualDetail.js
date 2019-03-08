@@ -12,6 +12,7 @@ export default class VisualDetail extends Component {
 			visual: navigation.getParam('visual')
 		}
     this.increaseEpisode = this.increaseEpisode.bind(this)
+    this.edit = this.edit.bind(this);
 	}
 	componentDidMount() {
 		
@@ -30,6 +31,9 @@ export default class VisualDetail extends Component {
       console.error(err);
     })
   }
+  edit() {
+    const {visual} = this.state;
+  }
   render() {
     const {visual} = this.state;
     return (
@@ -39,6 +43,10 @@ export default class VisualDetail extends Component {
         <Button 
           onPress={this.increaseEpisode}
           title="Increate Episode"
+        />
+        <Button 
+          onPress={this.edit}
+          title="Edit"
         />
       </View>
     );

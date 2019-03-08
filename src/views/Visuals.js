@@ -68,6 +68,7 @@ export default class Visuals extends Component {
 					  		<Image style={styles.VisualImage} source={{uri: item.poster}} />
 					  		<View style={styles.VisualDetail}>
 					  			<Text style={[styles.VisualText, styles.VisualTitle]}>{item.title}</Text>
+									<Text style={[styles.VisualText]}>{item.original_title}</Text>
 									<Text style={styles.VisualText}>豆瓣评分: {item.douban_rating}</Text>
 									<Text style={styles.VisualText}>IMDB: {item.imdb_rating}</Text>
 									<Text style={styles.VisualText}>{item.release_date}</Text>
@@ -101,13 +102,17 @@ const styles = StyleSheet.create({
 	pageTitle: {
 		fontSize: 36,
 		textAlign: 'center',
-		marginBottom: 30
+		marginBottom: 30,
+		marginTop: 30
 	},
 	searchBar: {
 		height: 40,
 		borderColor: 'gray',
 		color: '#FFFFFF',
-		borderWidth: 1
+		borderWidth: 1,
+		borderRadius: 10,
+		marginLeft: 20,
+		marginRight: 20
 	},
 	VisualRow: {
 		flex: 1,

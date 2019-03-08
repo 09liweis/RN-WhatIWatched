@@ -31,7 +31,17 @@ export default class VisualForm extends Component {
 		}
 	}
 	componentDidMount() {
-		
+    const visualId = this.props.visualId;
+		fetch('https://what-i-watched.herokuapp.com/api/visual/' + visualId)
+		.then(res => res.json())
+		.then((res) => {
+			this.setState({
+				visuals: res.results
+			})
+		})
+		.catch((err) => {
+			console.error(err);
+		})
 	}
   render() {
     return (
