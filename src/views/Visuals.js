@@ -67,6 +67,7 @@ export default class Visuals extends Component {
 					  		<Image style={{width: '30%', height: 200}} source={{uri: item.poster}} />
 					  		<View style={{marginLeft: 15}}>
 					  			<Text style={{fontSize: 24}}>{item.title}</Text>
+									<Text>豆瓣评分: {item.douban_rating}</Text>
 									<Text>{item.release_date}</Text>
 									<Text>{item.current_episode}/{item.episodes}</Text>
 					  		</View>
