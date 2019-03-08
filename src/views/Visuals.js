@@ -64,8 +64,8 @@ export default class Visuals extends Component {
 				  renderItem={({item}) =>
 				  	<TouchableOpacity onPress={() => navigation.navigate('VisualDetail',{visual: item})}>
 					  	<View style={styles.VisualRow}>
-					  		<Image style={{width: '30%', height: 200}} source={{uri: item.poster}} />
-					  		<View style={{marginLeft: 15}}>
+					  		<Image style={styles.VisualImage} source={{uri: item.poster}} />
+					  		<View style={styles.VisualDetail}>
 					  			<Text style={[styles.VisualTitle, styles.VisualText]}>{item.title}</Text>
 									<Text style={styles.VisualText}>豆瓣评分: {item.douban_rating}</Text>
 									<Text style={styles.VisualText}>IMDB: {item.imdb_rating}</Text>
@@ -97,23 +97,27 @@ const styles = StyleSheet.create({
 		color: '#FFFFFF',
     backgroundColor: '#090f2b',
 	},
-	
 	VisualRow: {
 		flex: 1,
 		flexDirection: 'row',
-		marginBottom: 15,
-		marginLeft: 15,
-		marginRight: 15
+		backgroundColor: '#1f2749',
+		margin: 20,
+		borderRadius: 10
 	},
-
+	VisualImage: {
+		width: '30%',
+		height: 200,
+		borderRadius: 10
+	},
+	VisualDetail: {
+		padding: 20
+	},
 	VisualText: {
 		color: '#FFFFFF'
 	},
-
 	VisualTitle: {
 		fontSize: 24
 	},
-
   TouchableOpacityStyle: {
     position: 'absolute',
     width: 50,
@@ -123,7 +127,6 @@ const styles = StyleSheet.create({
     right: 30,
     bottom: 30,
   },
-
   FloatingButtonStyle: {
     resizeMode: 'contain',
     width: 50,
