@@ -52,9 +52,10 @@ export default class Visuals extends Component {
   	const {navigation} = this.props;
     return (
       <View style={styles.MainContainer}>
-      	<Text>Visual List Page {this.state.visuals.length}</Text>
+      	<Text style={[styles.VisualText, styles.pageTitle]}>你睇左 {this.state.visuals.length} 个野!</Text>
       	<TextInput
-	        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+					style={styles.searchBar}
+					placeholder={'Search Something'}
 	        onChangeText={(search) => this.searchVisual(search)}
 	        value={this.state.search}
 	      />
@@ -96,6 +97,17 @@ const styles = StyleSheet.create({
   MainContainer: {
 		color: '#FFFFFF',
     backgroundColor: '#090f2b',
+	},
+	pageTitle: {
+		fontSize: 36,
+		textAlign: 'center',
+		marginBottom: 30
+	},
+	searchBar: {
+		height: 40,
+		borderColor: 'gray',
+		color: '#FFFFFF',
+		borderWidth: 1
 	},
 	VisualRow: {
 		flex: 1,
