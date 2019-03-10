@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, FlatList, Image, TouchableOpacity} from 'react-native';
+import {Platform, StyleSheet, Text, View, TextInput, Image, TouchableOpacity} from 'react-native';
 
 export default class VisualForm extends Component {
 	static navigationOptions = {
@@ -31,23 +31,47 @@ export default class VisualForm extends Component {
 		}
 	}
 	componentDidMount() {
-    const visualId = this.props.visualId;
+    const {navigation} = this.props;
+    const visualId = navigation.getParam('visualId')
 		fetch('https://what-i-watched.herokuapp.com/api/visual/' + visualId)
 		.then(res => res.json())
 		.then((res) => {
 			this.setState({
-				visuals: res.results
+				visual: res.result
 			})
 		})
 		.catch((err) => {
 			console.error(err);
 		})
-	}
+  }
+  updateInput(key, value) {
+    let visual = this.state.visual;
+    visual[key] = value;
+    this.setState({visual});
+    console.log(this.state.visual);
+  }
   render() {
+    let {visual} = this.state;
     return (
-      <View>
+      <View style={styles.pageContainer}>
       	<Text>Visual Form</Text>
+        <TextInput
+					style={styles.TextInput}
+					placeholder={'Search Something'}
+	        onChangeText={(title) => this.updateInput('title',title)}
+	        value={visual.title}
+	      />
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  pageContainer: {
+    backgroundColor: '#090f2b',
+    height: '100%'
+	},
+  TextInput: {
+    color: '#FFFFFF'
+  }
+});

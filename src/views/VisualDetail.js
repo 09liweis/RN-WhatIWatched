@@ -33,6 +33,8 @@ export default class VisualDetail extends Component {
   }
   edit() {
     const {visual} = this.state;
+    const {navigation} = this.props;
+    navigation.navigate('VisualForm',{visualId: visual.id})
   }
   render() {
     const {visual} = this.state;
