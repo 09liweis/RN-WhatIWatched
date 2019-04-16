@@ -48,20 +48,29 @@ export default class VisualForm extends Component {
     let visual = this.state.visual;
     visual[key] = value;
     this.setState({visual});
-    console.log(this.state.visual);
   }
   render() {
     let {visual} = this.state;
     return (
       <View style={styles.pageContainer}>
       	<Text>Visual Form</Text>
-        <TextInput
-					style={styles.TextInput}
-					placeholder={'Search Something'}
-	        onChangeText={(title) => this.updateInput('title',title)}
-	        value={visual.title}
-	      />
+        <FormInput updateInput={this.updateInput} key={'title'} value={visual.title} />
       </View>
+    );
+  }
+}
+
+class FormInput extends Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <TextInput
+        style={styles.TextInput}
+        onChangeText={(value) => this.props.updateInput(this.props.key, value)}
+        value={this.props.value}
+      />
     );
   }
 }
@@ -72,6 +81,9 @@ const styles = StyleSheet.create({
     height: '100%'
 	},
   TextInput: {
-    color: '#FFFFFF'
+    color: '#FFFFFF',
+    borderColor: 'gray',
+		borderWidth: 1,
+		borderRadius: 10,
   }
 });

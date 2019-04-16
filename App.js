@@ -10,7 +10,6 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import {createStackNavigator, createAppContainer} from 'react-navigation';
 
-
 import Visuals from './src/views/Visuals';
 import VisualDetail from './src/views/VisualDetail';
 import VisualForm from './src/views/VisualForm';
