@@ -82,11 +82,7 @@ export default class Visuals extends Component {
           activeOpacity={0.7}
           onPress={() => navigation.navigate('VisualForm')}
           style={styles.TouchableOpacityStyle}>
-          <Image
-            source={{uri:'http://aboutreact.com/wp-content/uploads/2018/08/bc72de57b000a7037294b53d34c2cbd1.png'}}
-
-            style={styles.FloatingButtonStyle}
-          />
+          <Text>+</Text>
         </TouchableOpacity>
       </View>
     );
@@ -144,10 +140,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     right: 30,
     bottom: 30,
-  },
-  FloatingButtonStyle: {
-    resizeMode: 'contain',
-    width: 50,
-    height: 50,
-  },
+  }
 });
