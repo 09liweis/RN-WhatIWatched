@@ -14,7 +14,7 @@ export default class Visuals extends Component {
 		this.state = {
 			visuals: [],
 			search: '',
-			api: 'https://what-i-watched.herokuapp.com/api/visuals'
+			api: 'https://what-i-watched.herokuapp.com/api/visuals?limit=20'
 		}
 	}
 	componentDidMount() {
