@@ -72,7 +72,9 @@ export default class Visuals extends Component {
 									<Text style={styles.VisualText}>豆瓣评分: {item.douban_rating}</Text>
 									<Text style={styles.VisualText}>IMDB: {item.imdb_rating}</Text>
 									<Text style={styles.VisualText}>{item.release_date}</Text>
-									<Text style={styles.VisualText}>{item.current_episode}/{item.episodes}</Text>
+									<Text style={styles.VisualText}>进度: {item.current_episode}/{item.episodes}</Text>
+									<Text style={styles.VisualText}>国家: {item.countries.join(',')}</Text>
+									<Text style={styles.VisualText}>语言: {item.languages.join(',')}</Text>
 					  		</View>
 					  	</View>
 				  	</TouchableOpacity>
