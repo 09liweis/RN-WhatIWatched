@@ -32,9 +32,9 @@ class Home extends Component<Props> {
   static navigationOptions = {
     title: 'Welcome to What I Watched!',
     headerStyle: {
-      backgroundColor: '#090f2b',
+      backgroundColor: '#fff',
     },
-    headerTintColor:'#fff'
+    headerTintColor:'#090f2b'
   };
   render() {
     return (
