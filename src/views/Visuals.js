@@ -94,8 +94,7 @@ export default class Visuals extends Component {
 
 const styles = StyleSheet.create({
   MainContainer: {
-		color: '#FFFFFF',
-    backgroundColor: '#090f2b',
+		color: '#090f2b',
 	},
 	pageTitle: {
 		fontSize: 36,
@@ -106,18 +105,19 @@ const styles = StyleSheet.create({
 	searchBar: {
 		height: 40,
 		borderColor: 'gray',
-		color: '#FFFFFF',
+		color: '#000',
 		borderWidth: 1,
 		borderRadius: 10,
-		marginLeft: 20,
-		marginRight: 20
+		marginLeft: 15,
+		marginRight: 15
 	},
 	VisualRow: {
 		flex: 1,
 		flexDirection: 'row',
-		backgroundColor: '#1f2749',
-		margin: 20,
-		borderRadius: 10
+		margin: 15,
+		borderRadius: 10,
+		borderWidth:1,
+		borderColor:'#ccc'
 	},
 	VisualImage: {
 		width: '30%',
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
 		padding: 20
 	},
 	VisualText: {
-		color: '#FFFFFF',
+		// color: '#FFFFFF',
 		fontSize: 16
 	},
 	VisualTitle: {
