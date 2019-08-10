@@ -52,7 +52,7 @@ export default class Visuals extends Component {
   	const {navigation} = this.props;
     return (
       <View style={styles.MainContainer}>
-      	<Text style={[styles.VisualText, styles.pageTitle]}>你睇左 {this.state.visuals.length} 个野!</Text>
+      	<Text style={[styles.pageTitle]}>你睇左 {this.state.visuals.length} 个野!</Text>
       	<TextInput
 					style={styles.searchBar}
 					placeholder={'Search Something'}
@@ -99,15 +99,14 @@ const styles = StyleSheet.create({
 	pageTitle: {
 		fontSize: 36,
 		textAlign: 'center',
-		marginBottom: 30,
-		marginTop: 30
+		margin:20
 	},
 	searchBar: {
 		height: 40,
 		borderColor: 'gray',
 		color: '#000',
 		borderWidth: 1,
-		borderRadius: 10,
+		borderRadius: 5,
 		marginLeft: 15,
 		marginRight: 15
 	},
@@ -115,7 +114,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		flexDirection: 'row',
 		margin: 15,
-		borderRadius: 10,
+		borderRadius: 5,
 		borderWidth:1,
 		borderColor:'#ccc'
 	},
@@ -125,10 +124,9 @@ const styles = StyleSheet.create({
 		borderRadius: 10
 	},
 	VisualDetail: {
-		padding: 20
+		padding: 15
 	},
 	VisualText: {
-		// color: '#FFFFFF',
 		fontSize: 16
 	},
 	VisualTitle: {
