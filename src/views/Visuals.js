@@ -49,10 +49,14 @@ export default class Visuals extends Component {
 		})
 	}
   render() {
-  	const {navigation} = this.props;
+		const {navigation} = this.props;
+		const {visuals} = this.state;
     return (
       <View style={styles.MainContainer}>
-      	<Text style={[styles.pageTitle]}>你睇左 {this.state.visuals.length} 个野!</Text>
+		<Text style={[styles.pageTitle]}>你睇左 {visuals.length} 个野!</Text>
+      	<TouchableOpacity onPress={() => navigation.navigate('RMHomePage')}>
+			<Text>Feed</Text>
+		</TouchableOpacity>
       	<TextInput
 					style={styles.searchBar}
 					placeholder={'Search Something'}
@@ -60,7 +64,7 @@ export default class Visuals extends Component {
 	        value={this.state.search}
 	      />
       	<FlatList
-				  data={this.state.visuals}
+				  data={visuals}
 				  keyExtractor={item => item.id.toString()}
 				  renderItem={({item}) =>
 				  	<TouchableOpacity onPress={() => navigation.navigate('VisualDetail',{visual: item})}>
@@ -91,10 +95,11 @@ export default class Visuals extends Component {
   }
 }
 
-
 const styles = StyleSheet.create({
   MainContainer: {
 		color: '#090f2b',
+		marginLeft:15,
+		marginRight:15
 	},
 	pageTitle: {
 		fontSize: 36,
@@ -107,13 +112,13 @@ const styles = StyleSheet.create({
 		color: '#000',
 		borderWidth: 1,
 		borderRadius: 5,
-		marginLeft: 15,
-		marginRight: 15
+		// marginLeft: 15,
+		// marginRight: 15
 	},
 	VisualRow: {
 		flex: 1,
 		flexDirection: 'row',
-		margin: 15,
+		marginTop:15,
 		borderRadius: 5,
 		borderWidth:1,
 		borderColor:'#ccc'
