@@ -1,6 +1,7 @@
 export default feeds = [
   {
     id:1,
+    tp:1,
     tl:'Upgrade to Premium VIP',
     sbtl:'Get more advanced features',
     bg:'#ccc',
@@ -8,21 +9,24 @@ export default feeds = [
     tags:[{tl:'Tag'}]
   },
   {
-    id:1,
+    id:2,
+    tp:1,
     tl:'This is an Adddddddd',
     color:'#fff',
     bg:'#efdfdf',
     tag:{tl:'Detail',style:2}
   },
   {
-    id:1,
+    id:3,
+    tp:1,
     tl:'This is an Ad',
     sbtl:'Get more info',
     color:'#fff',
     bg:{url:'https://img.realmaster.com/mls/1/766/C4420766.jpg?5552753'}
   },
   {
-    id:2,
+    id:4,
+    tp:2,
     tl:'Cost of living Comparison between Markham and Toronto',
     imgs:[
       {
@@ -54,7 +58,8 @@ export default feeds = [
     ]
   },
   {
-    id:2,
+    id:5,
+    tp:2,
     tl:'Don Mills - North York',
     imgs:[
       {
@@ -87,7 +92,8 @@ export default feeds = [
     ]
   },
   {
-    id:2,
+    id:6,
+    tp:2,
     tl:'65 Broadway Ave Condos',
     imgs:[
       {
