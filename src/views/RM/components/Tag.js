@@ -11,13 +11,36 @@ export default class Tag extends Component {
   }
   render() {
     const {tag} = this.props;
+    let tagStyle = styles.tag;
+    let cusStyle = {};
+    if (tag.style) {
+      if (tag.style == 2) {
+        tagStyle = styles.btn;
+      }
+    }
+    if (tag.color) {
+      cusStyle.color = tag.color;
+      cusStyle.borderColor = tag.color;
+    }
     return(
-      <Text style={styles.tag}>{tag.tl}</Text>
+      <Text style={[styles.common,tagStyle,cusStyle]}>{tag.tl}</Text>
     );
   }
 }
 const styles = StyleSheet.create({
+  common:{
+    marginTop:10,
+    marginRight:10
+  },
   tag:{
+    color:'red',
+    borderWidth:1,
+    borderColor:'red',
+    padding:2,
+    textAlign:'center',
+    alignSelf:'flex-start'
+  },
+  btn:{
     backgroundColor:'red',
     color:'#fff',
     textAlign:'center',
