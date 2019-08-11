@@ -13,7 +13,7 @@ export default class Tags extends Component {
   render() {
     const {tags} = this.props;
     const ts = tags.map((tag)=>{
-      return <Tag tag={tag}/>
+      return <Tag key={tag.tl} tag={tag}/>
     });
     return(
       <View style={styles.tags}>{ts}</View>
