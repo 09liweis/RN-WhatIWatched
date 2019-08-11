@@ -5,18 +5,25 @@ export default class Label extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      posMatch:{
-        2:styles.pos2,
-        3:styles.pos3
-      }
+      posMatch:{}
     }
   }
   componentDidMount() {
-
+    let posMatch = {};
+    for(let i = 2;i <=8;i++) {
+      posMatch[i] = styles['pos'+i];
+    }
+    this.setState({
+      posMatch:posMatch
+    });
   }
   render() {
     const {lbl} = this.props;
-    let posStyle = this.state.posMatch[lbl.pos];
+    const posMatch = this.state.posMatch;
+    let posStyle;
+    if (posMatch) {
+      posStyle = posMatch[lbl.pos];
+    }
     return(
       <Text style={[styles.lbl,posStyle]}>{lbl.tl}</Text>
     );
