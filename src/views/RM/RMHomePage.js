@@ -3,6 +3,7 @@ import {Platform, StyleSheet, Text, View, Image, FlatList, TouchableOpacity, But
 import feeds from './feeds'
 import Block1 from './components/Block1';
 import Block2 from './components/Block2';
+import Block4 from './components/Block4';
 
 export default class RMHomePage extends Component {
   constructor(props) {
@@ -31,6 +32,8 @@ export default class RMHomePage extends Component {
               return <Block1 feed={item}/>;
             } else if (item.tp == 2) {
               return <Block2 feed={item}/>;
+            } else if (item.tp == 4) {
+              return <Block4 feed={item}/>;
             }}
           }
         />
