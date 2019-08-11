@@ -13,6 +13,7 @@ import {createStackNavigator, createAppContainer} from 'react-navigation';
 import Visuals from './src/views/Visuals';
 import VisualDetail from './src/views/VisualDetail';
 import VisualForm from './src/views/VisualForm';
+import RMHomePage from './src/views/RM/RMHomePage';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -49,7 +50,8 @@ const AppStackNavigator = createStackNavigator(
 {
   Home: Home,
   VisualDetail: VisualDetail,
-  VisualForm: VisualForm
+  VisualForm: VisualForm,
+  RMHomePage:RMHomePage
 },
 {
   initialRouteName: 'Home'
