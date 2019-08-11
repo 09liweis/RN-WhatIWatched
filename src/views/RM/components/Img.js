@@ -10,13 +10,19 @@ export default class Img extends Component {
 
   }
   render() {
-    const {img} = this.props;
+    const {img,numImgs} = this.props;
     let lbl;
     if (img.lbl) {
       lbl = <Label lbl={img.lbl}/>
     }
+    let ratio = {
+      aspectRatio:4/numImgs
+    }
+    if (numImgs == 1) {
+      ratio.height = 150
+    }
     return(
-      <ImageBackground style={styles.img} source={{uri:img.url}}>
+      <ImageBackground style={[styles.img,ratio]} source={{uri:img.url}}>
         {lbl}
       </ImageBackground>
     );
@@ -25,8 +31,6 @@ export default class Img extends Component {
 const styles = StyleSheet.create({
   img:{
     position:'relative',
-    aspectRatio:4/3,
-    // width:150,
     height:100
   }
 })
