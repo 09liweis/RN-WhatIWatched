@@ -75,13 +75,6 @@ export default feeds = [
           tl:'TOP',
           pos:5
         }
-      },
-      {
-        url:'https://img.realmaster.com/mls/1/766/C4420766.jpg?5552753',
-        lbl:{
-          tl:'AD',
-          pos:6
-        }
       }
       ],
     txt:'This is a description,This is a description,This is a description,This is a description,This is a description.',
@@ -112,6 +105,23 @@ export default feeds = [
       {
         tl:'Don Valley North',
         color:'#ccc',
+      }
+    ]
+  },
+  {
+    id:7,
+    tp:4,
+    tl:'人民币破7 全球资产配置的重新洗牌',
+    txt:'10 for Sales, 20 for Rent',
+    img:{
+      url:'http://mmbiz.qpic.cn/mmbiz_png/ibj6cS3UulvPxslVcnawtBMGlBaRf1Sk2d92CU6wkxdria1qXic64jwXMREYoH2UpVicKPNhy1Iibh7ozf2cbwsue1A/640?wx_fmt=png',
+    },
+    tags:[
+      {
+        tl:'Top'
+      },
+      {
+        tl:'Toronto',
       }
     ]
   },
