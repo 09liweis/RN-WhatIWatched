@@ -18,9 +18,9 @@ export default class Tag extends Component {
         tagStyle = styles.btn;
       }
     }
-    if (tag.color) {
-      cusStyle.color = tag.color;
-      cusStyle.borderColor = tag.color;
+    if (tag.clr) {
+      cusStyle.color = tag.clr;
+      cusStyle.borderColor = tag.clr;
     }
     return(
       <Text style={[styles.common,tagStyle,cusStyle]}>{tag.tl}</Text>

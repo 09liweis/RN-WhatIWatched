@@ -15,8 +15,8 @@ export default class Block1 extends Component {
   render() {
     const {feed} = this.props;
     let thumb,sbtl,tag,source,textStyle = {};
-    if (feed.color) {
-      textStyle.color = feed.color;
+    if (feed.clr) {
+      textStyle.color = feed.clr;
     }
     if (feed.thumb) {
       thumb = <Thumbnail thumb={feed.thumb}/>
