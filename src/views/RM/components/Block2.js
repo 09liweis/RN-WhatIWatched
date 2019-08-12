@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import ElmStyle from './ElmStyle'
-import Thumbnail from './Thumbnail'
+import Profile from './Profile'
 import Tags from './Tags'
 import Img from './Img'
 
@@ -15,9 +15,9 @@ export default class Block2 extends Component {
   }
   render() {
     const {feed} = this.props;
-    let thumb,sbtl,tags,imgs;
-    if (feed.thumb) {
-      thumb = <Thumbnail thumb={feed.thumb}/>
+    let profile,sbtl,tags,imgs;
+    if (feed.profile) {
+      profile = <Profile profile={feed.profile}/>
     }
     if (feed.sbtl) {
       sbtl = <Text>{feed.sbtl}</Text>
@@ -34,6 +34,7 @@ export default class Block2 extends Component {
     return(
       <TouchableOpacity onPress={()=> console.log('test')}>
         <View style={[ElmStyle.view,styles.viewTwo]}>
+          {profile}
           <Text style={ElmStyle.viewTl}>{feed.tl}</Text>
           <View style={styles.imgContainer}>{imgs}</View>
           <Text style={styles.txt}>{feed.txt}</Text>
@@ -47,8 +48,13 @@ export default class Block2 extends Component {
 const styles = StyleSheet.create({
   viewTwo:{
     padding:10,
+    borderWidth:1,
     borderColor:'#ccc',
-    borderWidth:1
+    // shadowColor: '#ccc',
+    // shadowOffset: { width: 2, height: 2 },
+    // elevation: 2,
+    // shadowOpacity: 0.5,
+    // shadowRadius: 2,
   },
   imgContainer:{
     marginTop:15,
