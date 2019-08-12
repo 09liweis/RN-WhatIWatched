@@ -11,12 +11,12 @@ export default class Img extends Component {
   }
   render() {
     const {img,numImgs} = this.props;
-    let lbl,prop;
+    let lbl,prop,proj;
     if (img.lbl) {
       lbl = <Label lbl={img.lbl}/>
     }
     let ratio = {
-      aspectRatio:4/numImgs
+      // aspectRatio:4/numImgs
     }
     if (numImgs == 1) {
       ratio.height = 150
@@ -36,15 +36,31 @@ export default class Img extends Component {
         </View>
       );
     }
+    if (img.proj) {
+      const p = img.proj;
+      proj = (
+        <View style={styles.proj}>
+          <Text>{p.nm}</Text>
+          <Text>{p.txt}</Text>
+        </View>
+      );
+    }
     return(
-      <ImageBackground style={[styles.img,ratio]} source={{uri:img.url}}>
-        {lbl}
-        {prop}
-      </ImageBackground>
+      <View style={styles.imgContainer}>
+        <ImageBackground style={[styles.img]} source={{uri:img.url}}>
+          {lbl}
+          {prop}
+        </ImageBackground>
+        {proj}
+      </View>
     );
   }
 }
 const styles = StyleSheet.create({
+  imgContainer:{
+    flex:1,
+    justifyContent:'space-around'
+  },
   img:{
     position:'relative',
     height:100,
@@ -61,5 +77,8 @@ const styles = StyleSheet.create({
   },
   dom:{
     color:'#fcae28'
+  },
+  proj:{
+    marginTop:5
   }
 })
