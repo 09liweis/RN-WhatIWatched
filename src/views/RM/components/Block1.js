@@ -14,12 +14,15 @@ export default class Block1 extends Component {
   }
   render() {
     const {feed} = this.props;
-    let thumb,sbtl,tag,source;
+    let thumb,sbtl,tag,source,textStyle = {};
+    if (feed.color) {
+      textStyle.color = feed.color;
+    }
     if (feed.thumb) {
       thumb = <Thumbnail thumb={feed.thumb}/>
     }
     if (feed.sbtl) {
-      sbtl = <Text>{feed.sbtl}</Text>
+      sbtl = <Text style={textStyle}>{feed.sbtl}</Text>
     }
     if (feed.tag) {
       tag = <Tag tag={feed.tag}/>
@@ -31,7 +34,7 @@ export default class Block1 extends Component {
       <TouchableOpacity onPress={()=> console.log('test')}>
         <ImageBackground source={source} style={[ElmStyle.view,ElmStyle.viewOne,{backgroundColor:feed.bg,width:'100%',height:'100%'}]}>
           <View>
-            <Text style={ElmStyle.viewTl}>{feed.tl}</Text>
+            <Text style={[ElmStyle.viewTl,textStyle]}>{feed.tl}</Text>
             {sbtl}
             {tag}
           </View>
