@@ -20,12 +20,20 @@ export default feeds = [
     tp:1,
     tl:'This is an Ad',
     sbtl:'Get more info',
-    color:'#fff',
+    clr:'#fff',
     bg:{url:'https://img.realmaster.com/mls/1/766/C4420766.jpg?5552753'}
   },
   {
     id:4,
     tp:2,
+    profile:{
+      tl:'Shawn Su',
+	    sbtl:'Sale Rep',
+	    txt:'Answered 6h ago',
+      thumb:{
+        url:'https://www.realmaster.com/img/icon_nophoto.png'
+      }
+    },
     tl:'Cost of living Comparison between Markham and Toronto',
     imgs:[
       {
@@ -115,7 +123,7 @@ export default feeds = [
       },
       {
         tl:'Don Valley North',
-        color:'#ccc',
+        clr:'#ccc',
       }
     ]
   },
@@ -125,6 +133,7 @@ export default feeds = [
     tl:'人民币破7 全球资产配置的重新洗牌',
     txt:'Text area 02',
     thumb:{
+      tp:2,
       url:'http://mmbiz.qpic.cn/mmbiz_png/ibj6cS3UulvPxslVcnawtBMGlBaRf1Sk2d92CU6wkxdria1qXic64jwXMREYoH2UpVicKPNhy1Iibh7ozf2cbwsue1A/640?wx_fmt=png',
     },
     tags:[
@@ -133,6 +142,61 @@ export default feeds = [
       },
       {
         tl:'Toronto',
+      }
+    ]
+  },
+  {
+    id:8,
+    tp:2,
+    tl:'New Project Recommend',
+    imgs:[
+      {
+        url:'https://img.realmaster.com/mls/1/766/C4420766.jpg?5552753',
+        lbl:{
+          tl:'AD',
+          pos:4
+        },
+        proj:{
+          nm:'Tretti Condos',
+          txt:'6.5%首付!近地铁站，比邻YorkDale',
+          sqftp:'375 - 1111',
+          addr:''
+        }
+      },
+      {
+        url:'https://img.realmaster.com/mls/1/766/C4420766.jpg?5552753',
+        lbl:{
+          tl:'AD',
+          pos:4
+        },
+        proj:{
+          nm:'Tretti Condos',
+          txt:'6.5%首付!近地铁站，比邻YorkDale',
+          sqftp:'375 - 1111',
+          addr:''
+        }
+      },
+      {
+        url:'https://img.realmaster.com/mls/1/766/C4420766.jpg?5552753',
+        lbl:{
+          tl:'AD',
+          pos:4
+        },
+        proj:{
+          nm:'Tretti Condos',
+          txt:'6.5%首付!近地铁站，比邻YorkDale',
+          sqftp:'375 - 1111',
+          addr:''
+        }
+      }
+      ],
+    tags:[
+      {
+        tl:'Recommand'
+      },
+      {
+        tl:'Richmond Hill',
+        clr:'#ccc',
       }
     ]
   },
