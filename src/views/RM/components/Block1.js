@@ -32,7 +32,7 @@ export default class Block1 extends Component {
     }
     return(
       <TouchableOpacity onPress={()=> console.log('test')}>
-        <ImageBackground source={source} style={[ElmStyle.view,ElmStyle.viewOne,{backgroundColor:feed.bg,width:'100%',height:'100%'}]}>
+        <ImageBackground source={source} style={[ElmStyle.view,ElmStyle.viewOne,{backgroundColor:feed.bg}]}>
           <View>
             <Text style={[ElmStyle.viewTl,textStyle]}>{feed.tl}</Text>
             {sbtl}
