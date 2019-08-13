@@ -51,5 +51,17 @@ const styles = StyleSheet.create({
   pos5:{
     top:5,
     left:5
+  },
+  pos6:{
+    top:5,
+    right:5
+  },
+  pos7:{
+    right:0,
+    bottom:0
+  },
+  pos8:{
+    left:0,
+    bottom:0
   }
 })
