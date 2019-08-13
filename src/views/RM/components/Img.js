@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, ImageBackground, TouchableOpacity, Button} from 'react-native';
 import Label from './Label'
+import Thumbnail from './Thumbnail'
 export default class Img extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +12,7 @@ export default class Img extends Component {
   }
   render() {
     const {img,numImgs} = this.props;
-    let lbl,prop,proj;
+    let lbl,prop,proj,thumb;
     if (img.lbl) {
       lbl = <Label lbl={img.lbl}/>
     }
@@ -45,11 +46,22 @@ export default class Img extends Component {
         </View>
       );
     }
+    if (img.thumb) {
+      tStyle = {
+        position:'absolute',
+        left:0,
+        top:50,
+        width:25,
+        height:25
+      }
+      thumb = <Thumbnail tStyle={tStyle} thumb={img.thumb}/>
+    }
     return(
       <View style={styles.imgContainer}>
-        <ImageBackground style={[styles.img]} source={{uri:img.url}}>
+        <ImageBackground style={[styles.img,ratio]} source={{uri:img.url}}>
           {lbl}
           {prop}
+          {thumb}
         </ImageBackground>
         {proj}
       </View>
