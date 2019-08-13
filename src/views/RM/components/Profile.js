@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
   profile:{
     flexDirection:'row',
     alignSelf:'flex-start',
-    alignItems:'center'
+    alignItems:'center',
+    marginBottom:10
   }
 })
