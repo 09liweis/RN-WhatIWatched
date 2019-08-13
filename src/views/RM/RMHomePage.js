@@ -15,11 +15,6 @@ export default class RMHomePage extends Component {
   componentDidMount() {
 
   }
-  // renderBlock(item) {
-  //   if (item.id == 1) {
-  //     return <BLock1 feed={item}/>;
-  //   }
-  // }
   render() {
     const {feeds} = this.state;
     return(
@@ -43,7 +38,5 @@ export default class RMHomePage extends Component {
 }
 const styles = StyleSheet.create({
   container:{
-    marginLeft:20,
-    marginRight:20
   }
 })
