@@ -13,7 +13,8 @@ export default feeds = [
     tp:1,
     tl:'This is an Adddddddd',
     bg:'#efdfdf',
-    tag:{tl:'Detail',style:2}
+    tag:{tl:'Detail',style:2},
+    bd:1
   },
   {
     id:3,
@@ -25,7 +26,7 @@ export default feeds = [
   },
   {
     id:4,
-    tp:2,
+    tp:4,
     profile:{
       tl:'Shawn Su',
 	    sbtl:'Sale Rep',
@@ -66,7 +67,7 @@ export default feeds = [
   },
   {
     id:5,
-    tp:2,
+    tp:4,
     tl:'Don Mills - North York',
     imgs:[
       {
@@ -105,7 +106,7 @@ export default feeds = [
   },
   {
     id:6,
-    tp:2,
+    tp:4,
     tl:'65 Broadway Ave Condos',
     imgs:[
       {
@@ -129,8 +130,8 @@ export default feeds = [
   },
   {
     id:7,
-    tp:4,
-    tl:'人民币破7 全球资产配置的重新洗牌',
+    tp:2,
+    tl:'人民币破7 全球资产配置',
     txt:'Text area 02',
     thumb:{
       tp:2,
@@ -147,14 +148,27 @@ export default feeds = [
   },
   {
     id:8,
-    tp:2,
+    tp:4,
     tl:'New Project Recommend',
     imgs:[
       {
+        thumb:{
+          url:'https://f.realmaster.cn/P/JDC/A.jpg',
+          bClr:'#fff'
+        },
+        url:'https://img.realmaster.com/mls/1/766/C4420766.jpg?5552753',
+        proj:{
+          nm:'Tretti Condos',
+          txt:'6.5%首付!近地铁站，比邻YorkDale',
+          sqftp:'375 - 1111',
+          addr:''
+        }
+      },
+      {
         url:'https://img.realmaster.com/mls/1/766/C4420766.jpg?5552753',
         lbl:{
           tl:'AD',
-          pos:4
+          pos:7
         },
         proj:{
           nm:'Tretti Condos',
@@ -167,20 +181,7 @@ export default feeds = [
         url:'https://img.realmaster.com/mls/1/766/C4420766.jpg?5552753',
         lbl:{
           tl:'AD',
-          pos:4
-        },
-        proj:{
-          nm:'Tretti Condos',
-          txt:'6.5%首付!近地铁站，比邻YorkDale',
-          sqftp:'375 - 1111',
-          addr:''
-        }
-      },
-      {
-        url:'https://img.realmaster.com/mls/1/766/C4420766.jpg?5552753',
-        lbl:{
-          tl:'AD',
-          pos:4
+          pos:8
         },
         proj:{
           nm:'Tretti Condos',

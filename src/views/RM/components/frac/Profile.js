@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Image, FlatList, TouchableOpacity, Button} from 'react-native';
-import ElmStyle from './ElmStyle'
+import ElmStyle from '../ElmStyle'
 import Thumbnail from './Thumbnail'
 export default class Profile extends Component {
   constructor(props) {

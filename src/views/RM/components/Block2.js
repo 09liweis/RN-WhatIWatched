@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import ElmStyle from './ElmStyle'
-import Profile from './Profile'
-import Tags from './Tags'
-import Img from './Img'
+import Thumbnail from './frac/Thumbnail'
+import Tags from './frac/Tags'
 
 export default class Block2 extends Component {
   constructor(props) {
@@ -15,46 +14,35 @@ export default class Block2 extends Component {
   }
   render() {
     const {feed} = this.props;
-    let profile,sbtl,tags,imgs;
-    if (feed.profile) {
-      profile = <Profile profile={feed.profile}/>
-    }
-    if (feed.sbtl) {
-      sbtl = <Text>{feed.sbtl}</Text>
+    let thumb,tags,leftViewStyle = {flex:1};
+    if (feed.thumb) {
+      thumb = <View style={{flex:1}}><Thumbnail thumb={feed.thumb}/></View>
+      leftViewStyle.flex = 3
     }
     if (feed.tags) {
       tags = <Tags tags={feed.tags}/>
     }
-    if (feed.imgs) {
-      const numImgs = feed.imgs.length;
-      imgs = feed.imgs.map((img,i)=>{
-        return <Img key={i} img={img} numImgs={numImgs} />
-      })
-    }
     return(
-      <TouchableOpacity onPress={()=> console.log('test')}>
-        <View style={[ElmStyle.view,styles.viewTwo]}>
-          {profile}
+      <View style={[ElmStyle.view,styles.viewTwo]}>
+        <View style={leftViewStyle}>
           <Text style={ElmStyle.viewTl}>{feed.tl}</Text>
-          <View style={styles.imgContainer}>{imgs}</View>
           <Text style={styles.txt}>{feed.txt}</Text>
           {tags}
-          {sbtl}
         </View>
-      </TouchableOpacity>
+        {thumb}
+      </View>
     );
   }
 }
 const styles = StyleSheet.create({
   viewTwo:{
     padding:10,
-    borderWidth:1,
     borderColor:'#ccc',
-    // shadowColor: '#ccc',
-    // shadowOffset: { width: 2, height: 2 },
-    // elevation: 2,
-    // shadowOpacity: 0.5,
-    // shadowRadius: 2,
+    borderWidth:1,
+    flex:1,
+    flexDirection:'row',
+    justifyContent:'space-between',
+    alignItems:'center'
   },
   imgContainer:{
     marginTop:15,

@@ -10,16 +10,18 @@ export default class Thumbnail extends Component {
 
   }
   render() {
-    const {thumb} = this.props;
+    let {thumb,tStyle} = this.props;
     let style = styles.round;
     if (thumb.tp && thumb.tp == 2) {
       style = styles.square;
     }
+    if (thumb.bClr) {
+      tStyle.borderColor = thumb.bClr;
+      tStyle.borderWidth = 1;
+    }
     return(
       <TouchableOpacity onPress={()=> console.log('test')}>
-        <View>
-          <Image style={style} source={{uri:thumb.url}}/>
-        </View>
+        <Image style={[style,tStyle]} source={{uri:thumb.url}}/>
       </TouchableOpacity>
     );
   }

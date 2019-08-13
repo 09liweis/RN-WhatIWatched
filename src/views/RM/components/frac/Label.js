@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Image, FlatList, TouchableOpacity, Button} from 'react-native';
+import {Platform, StyleSheet, Text} from 'react-native';
 
 export default class Label extends Component {
   constructor(props) {

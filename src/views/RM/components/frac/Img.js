@@ -51,8 +51,8 @@ export default class Img extends Component {
         position:'absolute',
         left:0,
         top:50,
-        width:25,
-        height:25
+        width:35,
+        height:35
       }
       thumb = <Thumbnail tStyle={tStyle} thumb={img.thumb}/>
     }

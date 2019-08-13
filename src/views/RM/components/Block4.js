@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {Platform, StyleSheet, Text, View} from 'react-native';
 import ElmStyle from './ElmStyle'
-import Thumbnail from './Thumbnail'
-import Tags from './Tags'
+import Profile from './frac/Profile'
+import Tags from './frac/Tags'
+import Img from './frac/Img'
 
 export default class Block4 extends Component {
   constructor(props) {
@@ -14,36 +15,44 @@ export default class Block4 extends Component {
   }
   render() {
     const {feed} = this.props;
-    let thumb,sbtl,tags,imgs;
-    if (feed.thumb) {
-      thumb = <Thumbnail thumb={feed.thumb}/>
+    let profile,sbtl,tags,imgs;
+    if (feed.profile) {
+      profile = <Profile profile={feed.profile}/>
+    }
+    if (feed.sbtl) {
+      sbtl = <Text>{feed.sbtl}</Text>
     }
     if (feed.tags) {
       tags = <Tags tags={feed.tags}/>
     }
+    if (feed.imgs) {
+      const numImgs = feed.imgs.length;
+      imgs = feed.imgs.map((img,i)=>{
+        return <Img key={i} img={img} numImgs={numImgs} />
+      })
+    }
     return(
-      <TouchableOpacity onPress={()=> console.log('test')}>
-        <View style={[ElmStyle.view,styles.viewTwo]}>
-          <View>
-            <Text style={ElmStyle.viewTl}>{feed.tl}</Text>
-            <Text style={styles.txt}>{feed.txt}</Text>
-            {tags}
-          </View>
-          <View>{thumb}</View>
-        </View>
-      </TouchableOpacity>
+      <View style={[ElmStyle.view,styles.viewTwo]}>
+        {profile}
+        <Text style={ElmStyle.viewTl}>{feed.tl}</Text>
+        <View style={styles.imgContainer}>{imgs}</View>
+        <Text style={styles.txt}>{feed.txt}</Text>
+        {tags}
+        {sbtl}
+      </View>
     );
   }
 }
 const styles = StyleSheet.create({
   viewTwo:{
     padding:10,
-    borderColor:'#ccc',
     borderWidth:1,
-    flex:1,
-    flexDirection:'row',
-    justifyContent:'space-between',
-    alignItems:'center'
+    borderColor:'#ccc',
+    // shadowColor: '#ccc',
+    // shadowOffset: { width: 2, height: 2 },
+    // elevation: 2,
+    // shadowOpacity: 0.5,
+    // shadowRadius: 2,
   },
   imgContainer:{
     marginTop:15,

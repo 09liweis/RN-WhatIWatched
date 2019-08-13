@@ -1,35 +1,34 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Image, FlatList, TouchableOpacity, Button} from 'react-native';
+import {Platform, StyleSheet, View, FlatList} from 'react-native';
 import feeds from './feeds'
-import Block1 from './components/Block1';
-import Block2 from './components/Block2';
-import Block4 from './components/Block4';
+import Block from './components/Block';
 
 export default class RMHomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      feeds:feeds
+      feeds:feeds,
+      loading:false
     }
   }
   componentDidMount() {
 
   }
+  pullToFresh() {
+    this.setState({loading:true});
+    setTimeout(()=> this.setState({loading:false}),3000);
+  }
   render() {
-    const {feeds} = this.state;
+    const {feeds,loading} = this.state;
     return(
       <View style={styles.container}>
         <FlatList
+          refreshing={loading == true}
+          onRefresh={() => this.pullToFresh()}
           data={feeds}
           keyExtractor={item => item.id.toString()}
           renderItem={({item}) =>
-            {if (item.tp == 1) {
-              return <Block1 feed={item}/>;
-            } else if (item.tp == 2) {
-              return <Block2 feed={item}/>;
-            } else if (item.tp == 4) {
-              return <Block4 feed={item}/>;
-            }}
+            <Block feed={item}/>
           }
         />
       </View>
