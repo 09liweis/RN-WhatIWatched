@@ -54,9 +54,6 @@ export default class Visuals extends Component {
     return (
       <View style={styles.MainContainer}>
 		<Text style={[styles.pageTitle]}>你睇左 {visuals.length} 个野!</Text>
-      	<TouchableOpacity onPress={() => navigation.navigate('RMHomePage')}>
-			<Text>Feed</Text>
-		</TouchableOpacity>
       	<TextInput
 					style={styles.searchBar}
 					placeholder={'Search Something'}
