@@ -61,26 +61,26 @@ export default class Visuals extends Component {
 	        value={this.state.search}
 	      />
       	<FlatList
-				  data={visuals}
-				  keyExtractor={item => item.id.toString()}
-				  renderItem={({item}) =>
-				  	<TouchableOpacity onPress={() => navigation.navigate('VisualDetail',{visual: item})}>
-					  	<View style={styles.VisualRow}>
-					  		<Image style={styles.VisualImage} source={{uri: item.poster}} />
-					  		<View style={styles.VisualDetail}>
-					  			<Text style={[styles.VisualText, styles.VisualTitle]}>{item.title}</Text>
-									<Text style={[styles.VisualText]}>{item.original_title}</Text>
-									<Text style={styles.VisualText}>豆瓣评分: {item.douban_rating}</Text>
-									<Text style={styles.VisualText}>IMDB: {item.imdb_rating}</Text>
-									<Text style={styles.VisualText}>{item.release_date}</Text>
-									<Text style={styles.VisualText}>进度: {item.current_episode}/{item.episodes}</Text>
-									<Text style={styles.VisualText}>国家: {item.countries.join(',')}</Text>
-									<Text style={styles.VisualText}>语言: {item.languages.join(',')}</Text>
-					  		</View>
-					  	</View>
-				  	</TouchableOpacity>
-				  }
-				/>
+			data={visuals}
+			keyExtractor={item => item.id.toString()}
+			renderItem={({item}) =>
+			<TouchableOpacity onPress={() => navigation.navigate('VisualDetail',{visual: item})}>
+				<View style={styles.VisualRow}>
+					<Image style={styles.VisualImage} source={{uri: item.poster}} />
+					<View style={styles.VisualDetail}>
+						<Text style={[styles.VisualText, styles.VisualTitle]}>{item.title}</Text>
+							<Text style={[styles.VisualText]}>{item.original_title}</Text>
+							<Text style={styles.VisualText}>豆瓣评分: {item.douban_rating}</Text>
+							<Text style={styles.VisualText}>IMDB: {item.imdb_rating}</Text>
+							<Text style={styles.VisualText}>{item.release_date}</Text>
+							<Text style={styles.VisualText}>进度: {item.current_episode}/{item.episodes}</Text>
+							<Text style={styles.VisualText}>国家: {item.countries.join(',')}</Text>
+							<Text style={styles.VisualText}>语言: {item.languages.join(',')}</Text>
+					</View>
+				</View>
+			</TouchableOpacity>
+			}
+		/>
 				<TouchableOpacity
           activeOpacity={0.7}
           onPress={() => navigation.navigate('VisualForm')}
