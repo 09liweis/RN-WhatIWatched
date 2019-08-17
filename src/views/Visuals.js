@@ -14,15 +14,21 @@ export default class Visuals extends Component {
 		this.state = {
 			visuals: [],
 			search: '',
+			loading:false,
 			api: 'https://what-i-watched.herokuapp.com/api/visuals?limit=20'
 		}
 	}
 	componentDidMount() {
+		this.getVisuals();
+	}
+	getVisuals(){
+		this.setState({loading:true});
 		fetch(this.state.api)
 		.then(res => res.json())
 		.then((res) => {
 			this.setState({
-				visuals: res.results
+				visuals: res.results,
+				loading:false
 			})
 		})
 		.catch((err) => {
@@ -50,7 +56,7 @@ export default class Visuals extends Component {
 	}
   render() {
 		const {navigation} = this.props;
-		const {visuals} = this.state;
+		const {visuals,loading} = this.state;
     return (
       <View style={styles.MainContainer}>
 		<Text style={[styles.pageTitle]}>你睇左 {visuals.length} 个野!</Text>
@@ -61,6 +67,8 @@ export default class Visuals extends Component {
 	        value={this.state.search}
 	      />
       	<FlatList
+		  	refreshing={loading == true}
+			onRefresh={() => this.getVisuals()}
 			data={visuals}
 			keyExtractor={item => item.id.toString()}
 			renderItem={({item}) =>
