@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, TextInput, Image, TouchableOpacity} from 'react-native';
+import {Platform, StyleSheet, Text, View, TextInput, Image,} from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default class VisualForm extends Component {
 	static navigationOptions = {
@@ -23,7 +24,6 @@ export default class VisualForm extends Component {
         release_date: '',
         poster: '',
         summary: '',
-        online_source: '',
         episodes: 1,
         current_episode: 0,
         visual_type: 'movie'
@@ -51,11 +51,14 @@ export default class VisualForm extends Component {
   }
   render() {
     let {visual} = this.state;
+    const fields = Object.keys(visual);
+    let forms = fields.map((fields)=>
+      <FormInput updateInput={this.updateInput} key={fields} fields={fields} value={visual[fields].toString()} />
+    );
     return (
-      <View style={styles.pageContainer}>
-      	<Text>Visual Form</Text>
-        <FormInput updateInput={this.updateInput} key={'title'} value={visual.title} />
-      </View>
+      <ScrollView style={styles.pageContainer}>
+        {forms}
+      </ScrollView>
     );
   }
 }
@@ -66,22 +69,23 @@ class FormInput extends Component {
   }
   render() {
     return (
-      <TextInput
-        style={styles.TextInput}
-        onChangeText={(value) => this.props.updateInput(this.props.key, value)}
-        value={this.props.value}
-      />
+      <View>
+        <Text>{this.props.fields}</Text>
+        <TextInput
+          style={styles.TextInput}
+          onChangeText={(value) => this.props.updateInput(this.props.fields, value)}
+          value={this.props.value}
+        />
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   pageContainer: {
-    backgroundColor: '#090f2b',
     height: '100%'
 	},
   TextInput: {
-    color: '#FFFFFF',
     borderColor: 'gray',
 		borderWidth: 1,
 		borderRadius: 10,
