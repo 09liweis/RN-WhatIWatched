@@ -15,7 +15,8 @@ export default class Visuals extends Component {
 			visuals: [],
 			search: '',
 			loading:false,
-			api: 'https://what-i-watched.herokuapp.com/api/visuals?limit=20'
+			page:1,
+			api: 'https://what-i-watched.herokuapp.com/api/visuals?limit=20&page='
 		}
 	}
 	componentDidMount() {
@@ -23,17 +24,24 @@ export default class Visuals extends Component {
 	}
 	getVisuals(){
 		this.setState({loading:true});
-		fetch(this.state.api)
+		fetch(this.state.api+this.state.page)
 		.then(res => res.json())
 		.then((res) => {
 			this.setState({
-				visuals: res.results,
+				visuals: this.state.visuals.concat(res.results),
 				loading:false
 			})
 		})
 		.catch((err) => {
 			console.error(err);
 		})
+	}
+	pullToRefresh() {
+		this.setState({page:1});
+	}
+	handleLoadMore(){
+		this.setState({page:this.state.page+1});
+		this.getVisuals();
 	}
 	searchVisual(search) {
 		this.setState({search});
@@ -68,9 +76,11 @@ export default class Visuals extends Component {
 	      />
       	<FlatList
 		  	refreshing={loading == true}
-			onRefresh={() => this.getVisuals()}
+			onRefresh={() => this.pullToRefresh()}
 			data={visuals}
 			keyExtractor={item => item.id.toString()}
+			onEndReachedThreshold={0.4}
+          	onEndReached={this.handleLoadMore.bind(this)}
 			renderItem={({item}) =>
 			<TouchableOpacity onPress={() => navigation.navigate('VisualDetail',{visual: item})}>
 				<View style={styles.VisualRow}>
