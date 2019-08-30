@@ -75,7 +75,6 @@ export default class Visuals extends Component {
 		const {visuals,loading} = this.state;
     return (
       <View style={styles.MainContainer}>
-		<Text style={[styles.pageTitle]}>你睇左 {visuals.length} 个野!</Text>
       	<TextInput
 					style={styles.searchBar}
 					placeholder={'Search Something'}
@@ -117,17 +116,9 @@ export default class Visuals extends Component {
     );
   }
 }
-
+const elevation = 5;
 const styles = StyleSheet.create({
   MainContainer: {
-		color: '#090f2b',
-		marginLeft:15,
-		marginRight:15
-	},
-	pageTitle: {
-		fontSize: 36,
-		textAlign: 'center',
-		margin:20
 	},
 	searchBar: {
 		height: 40,
@@ -135,16 +126,21 @@ const styles = StyleSheet.create({
 		color: '#000',
 		borderWidth: 1,
 		borderRadius: 5,
-		// marginLeft: 15,
-		// marginRight: 15
+		marginLeft: 15,
+		marginRight: 15
 	},
 	VisualRow: {
+		backgroundColor:'#fff',
 		flex: 1,
 		flexDirection: 'row',
 		marginTop:15,
-		borderRadius: 5,
-		borderWidth:1,
-		borderColor:'#ccc'
+		marginLeft:15,
+		marginRight:15,
+		elevation,
+		shadowColor: 'black',
+		shadowOffset: { width: 0, height: 0.5 * elevation },
+		shadowOpacity: 0.3,
+		shadowRadius: 0.8 * elevation
 	},
 	VisualImage: {
 		width: '30%',
