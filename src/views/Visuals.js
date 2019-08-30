@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, Button, View, FlatList, Image, TouchableOpacity, TextInput} from 'react-native';
-
+import {Platform, StyleSheet, Text, View, FlatList, TouchableOpacity, TextInput,TouchableNativeFeedback} from 'react-native';
+import VisualCard from '../components/VisualCard'
 
 export default class Visuals extends Component {
 	static navigationOptions = {
@@ -90,19 +90,7 @@ export default class Visuals extends Component {
           	onEndReached={this.handleLoadMore.bind(this)}
 			renderItem={({item}) =>
 			<TouchableOpacity onPress={() => navigation.navigate('VisualDetail',{visual: item})}>
-				<View style={styles.VisualRow}>
-					<Image style={styles.VisualImage} source={{uri: item.poster}} />
-					<View style={styles.VisualDetail}>
-						<Text style={[styles.VisualText, styles.VisualTitle]}>{item.title}</Text>
-							<Text style={[styles.VisualText]}>{item.original_title}</Text>
-							<Text style={styles.VisualText}>豆瓣评分: {item.douban_rating}</Text>
-							<Text style={styles.VisualText}>IMDB: {item.imdb_rating}</Text>
-							<Text style={styles.VisualText}>{item.release_date}</Text>
-							<Text style={styles.VisualText}>进度: {item.current_episode}/{item.episodes}</Text>
-							<Text style={styles.VisualText}>国家: {item.countries.join(',')}</Text>
-							<Text style={styles.VisualText}>语言: {item.languages.join(',')}</Text>
-					</View>
-				</View>
+				<VisualCard v={item}/>
 			</TouchableOpacity>
 			}
 		/>
@@ -116,7 +104,6 @@ export default class Visuals extends Component {
     );
   }
 }
-const elevation = 5;
 const styles = StyleSheet.create({
   MainContainer: {
 	},
@@ -129,40 +116,4 @@ const styles = StyleSheet.create({
 		marginLeft: 15,
 		marginRight: 15
 	},
-	VisualRow: {
-		backgroundColor:'#fff',
-		flex: 1,
-		flexDirection: 'row',
-		marginTop:15,
-		marginLeft:15,
-		marginRight:15,
-		elevation,
-		shadowColor: 'black',
-		shadowOffset: { width: 0, height: 0.5 * elevation },
-		shadowOpacity: 0.3,
-		shadowRadius: 0.8 * elevation
-	},
-	VisualImage: {
-		width: '30%',
-		height: '100%',
-		borderRadius: 5
-	},
-	VisualDetail: {
-		padding: 15
-	},
-	VisualText: {
-		fontSize: 16
-	},
-	VisualTitle: {
-		fontSize: 24
-	},
-  TouchableOpacityStyle: {
-    position: 'absolute',
-    width: 50,
-    height: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-    right: 30,
-    bottom: 30,
-  }
 });
