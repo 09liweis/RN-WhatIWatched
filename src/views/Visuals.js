@@ -4,18 +4,18 @@ import {Platform, StyleSheet, Text, Button, View, FlatList, Image, TouchableOpac
 
 export default class Visuals extends Component {
 	static navigationOptions = {
-    title: 'Welcome',
-    headerStyle: {
-    	backgroundColor: 'green'
-    }
-  };
+		title: 'Welcome',
+		headerStyle: {
+			backgroundColor: 'green'
+		}
+	};
 	constructor(props) {
 		super(props);
+		this.page = 1;
 		this.state = {
 			visuals: [],
 			search: '',
 			loading:false,
-			page:1,
 			api: 'https://what-i-watched.herokuapp.com/api/visuals?limit=20&page='
 		}
 	}
@@ -23,12 +23,20 @@ export default class Visuals extends Component {
 		this.getVisuals();
 	}
 	getVisuals(){
+		const {api,visuals} = this.state;
+		const url = api+this.page;
+		let results = [];
 		this.setState({loading:true});
-		fetch(this.state.api+this.state.page)
+		fetch(url)
 		.then(res => res.json())
 		.then((res) => {
+			if (this.page == 1) {
+				results = res.results;
+			} else {
+				results = visuals.concat(res.results);
+			}
 			this.setState({
-				visuals: this.state.visuals.concat(res.results),
+				visuals:results,
 				loading:false
 			})
 		})
@@ -37,10 +45,10 @@ export default class Visuals extends Component {
 		})
 	}
 	pullToRefresh() {
-		this.setState({page:1});
+		this.page = 1;
 	}
 	handleLoadMore(){
-		this.setState({page:this.state.page+1});
+		this.page = this.page + 1;
 		this.getVisuals();
 	}
 	searchVisual(search) {
@@ -140,8 +148,8 @@ const styles = StyleSheet.create({
 	},
 	VisualImage: {
 		width: '30%',
-		height: 200,
-		borderRadius: 10
+		height: '100%',
+		borderRadius: 5
 	},
 	VisualDetail: {
 		padding: 15
