@@ -82,6 +82,7 @@ export default class Visuals extends Component {
 	        value={this.state.search}
 	      />
       	<FlatList
+					numColumns={3}
 		  	refreshing={loading == true}
 			onRefresh={() => this.pullToRefresh()}
 			data={visuals}
@@ -89,9 +90,7 @@ export default class Visuals extends Component {
 			onEndReachedThreshold={0.4}
           	onEndReached={this.handleLoadMore.bind(this)}
 			renderItem={({item}) =>
-			<TouchableOpacity onPress={() => navigation.navigate('VisualDetail',{visual: item})}>
-				<VisualCard v={item}/>
-			</TouchableOpacity>
+				<VisualCard v={item} navigation={navigation}/>
 			}
 		/>
 				<TouchableOpacity
