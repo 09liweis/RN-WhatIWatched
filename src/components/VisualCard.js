@@ -42,8 +42,8 @@ const elevation = 5;
 const styles = StyleSheet.create({
 	card: {
 		backgroundColor:'#fff',
-		flex: 1,
-		flexDirection: 'row',
+		// flex: 1,
+		// flexDirection: 'row',
 		// marginTop:15,
 		// marginLeft:15,
 		// marginRight:15,
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
 	},
 	VisualImage: {
 		width: cardWdith,
-		height: 250,
+		height: 270,
 		// borderRadius: 5
 	},
 	VisualDetail: {
