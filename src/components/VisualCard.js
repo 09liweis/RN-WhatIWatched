@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
 	},
 	VisualImage: {
 		width: cardWdith,
-		height: 270,
+		height: 230,
 		// borderRadius: 5
 	},
 	VisualDetail: {
