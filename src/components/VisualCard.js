@@ -17,7 +17,7 @@ export default class Visuals extends Component {
 	componentDidMount() {
 	}
 	
-  	render() {
+	render() {
 		const {navigation,v} = this.props;
 		let progress = {backgroundColor:'red'}
 		if (v.current_episode == v.episodes) {
@@ -29,20 +29,9 @@ export default class Visuals extends Component {
 			<TouchableOpacity style={styles.card} onPress={() => navigation.navigate('VisualDetail',{visual: v})}>
 				<Image style={styles.VisualImage} source={{uri: v.poster}} />
 				<Text style={[styles.VisualText,styles.progress,progress]}>{v.current_episode}/{v.episodes}</Text>
-				{/* <Text style={[styles.VisualText, styles.VisualTitle]}>{v.title}</Text> */}
-				{/* <View style={styles.VisualDetail}>
-					<Text style={[styles.VisualText]}>{v.original_title}</Text>
-					<TouchableOpacity onPress={()=>Linking.openURL('https://movie.douban.com/subject/'+v.douban_id)}>
-						<Text style={styles.VisualText}>豆瓣评分: {v.douban_rating}</Text>
-					</TouchableOpacity>
-					<Text style={styles.VisualText}>IMDB: {v.imdb_rating}</Text>
-					<Text style={styles.VisualText}>{v.release_date}</Text>
-					<Text style={styles.VisualText}>国家: {v.countries.join(',')}</Text>
-					<Text style={styles.VisualText}>语言: {v.languages.join(',')}</Text>
-				</View> */}
 			</TouchableOpacity>
 		);
-  	}
+	}
 }
 const elevation = 5;
 const styles = StyleSheet.create({
