@@ -19,10 +19,16 @@ export default class Visuals extends Component {
 	
   	render() {
 		const {navigation,v} = this.props;
+		let progress = {backgroundColor:'red'}
+		if (v.current_episode == v.episodes) {
+			progress.backgroundColor = '#3e8c3e';
+		} else if (v.current_episode > 0) {
+			progress.backgroundColor = '#ffc107'
+		}
 		return (
 			<TouchableOpacity style={styles.card} onPress={() => navigation.navigate('VisualDetail',{visual: v})}>
 				<Image style={styles.VisualImage} source={{uri: v.poster}} />
-				<Text style={[styles.VisualText,styles.progress]}>{v.current_episode}/{v.episodes}</Text>
+				<Text style={[styles.VisualText,styles.progress,progress]}>{v.current_episode}/{v.episodes}</Text>
 				{/* <Text style={[styles.VisualText, styles.VisualTitle]}>{v.title}</Text> */}
 				{/* <View style={styles.VisualDetail}>
 					<Text style={[styles.VisualText]}>{v.original_title}</Text>
@@ -77,7 +83,6 @@ const styles = StyleSheet.create({
 		top:0,
 		left:0,
 		color:'#fff',
-		backgroundColor:'#000',
 		padding:4,
 		borderRadius:2
 	}
