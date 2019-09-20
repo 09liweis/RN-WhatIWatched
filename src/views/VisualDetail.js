@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Image, TouchableOpacity, Button,Linking} from 'react-native';
 
+const API = 'https://what-i-watched.herokuapp.com/api/visual/increase_episode?id=';
+
 export default class VisualDetail extends Component {
 	static navigationOptions = {
     title: 'Visual Detail',
@@ -19,7 +21,7 @@ export default class VisualDetail extends Component {
 	}
   increaseEpisode() {
     const {visual} = this.state;
-    fetch('https://what-i-watched.herokuapp.com/api/visual/increase_episode?id='+visual.id)
+    fetch(API+visual.id)
     .then(res => res.json())
     .then((res) => {
       visual.current_episode = res.current_episode
