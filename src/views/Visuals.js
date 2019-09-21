@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, FlatList, TouchableOpacity, TextInput,TouchableNativeFeedback} from 'react-native';
+import {Platform, StyleSheet, Text, View, FlatList, TouchableOpacity, TextInput,Button} from 'react-native';
 import VisualCard from '../components/VisualCard'
 
 export default class Visuals extends Component {
@@ -75,6 +75,10 @@ export default class Visuals extends Component {
 		const {visuals,loading} = this.state;
     return (
       <View style={styles.MainContainer}>
+				<Button
+          title='Add New'
+          onPress={() => navigation.navigate('VisualForm')}
+        />
       	<TextInput
 					style={styles.searchBar}
 					placeholder={'Search Something'}
@@ -93,12 +97,6 @@ export default class Visuals extends Component {
 				<VisualCard v={item} navigation={navigation}/>
 			}
 		/>
-				<TouchableOpacity
-          activeOpacity={0.7}
-          onPress={() => navigation.navigate('VisualForm')}
-          style={styles.TouchableOpacityStyle}>
-          <Text>+</Text>
-        </TouchableOpacity>
       </View>
     );
   }
