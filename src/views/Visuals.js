@@ -81,7 +81,7 @@ export default class Visuals extends Component {
         />
       	<TextInput
 					style={styles.searchBar}
-					placeholder={'Search Something'}
+					placeholder={'Search Visual'}
 	        onChangeText={(search) => this.searchVisual(search)}
 	        value={this.state.search}
 	      />
