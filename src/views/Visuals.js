@@ -87,16 +87,16 @@ export default class Visuals extends Component {
 	      />
       	<FlatList
 					numColumns={3}
-		  	refreshing={loading == true}
-			onRefresh={() => this.pullToRefresh()}
-			data={visuals}
-			keyExtractor={item => item.id.toString()}
-			onEndReachedThreshold={0.4}
+		  		refreshing={loading == true}
+					onRefresh={() => this.pullToRefresh()}
+					data={visuals}
+					keyExtractor={item => item.id.toString()}
+					onEndReachedThreshold={0.4}
           	onEndReached={this.handleLoadMore.bind(this)}
-			renderItem={({item}) =>
-				<VisualCard v={item} navigation={navigation}/>
-			}
-		/>
+					renderItem={({item}) =>
+						<VisualCard v={item} navigation={navigation}/>
+					}
+				/>
       </View>
     );
   }
