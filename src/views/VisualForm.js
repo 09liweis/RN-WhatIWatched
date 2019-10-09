@@ -47,7 +47,6 @@ export default class VisualForm extends Component {
     fetch('https://movie.douban.com/j/subject_suggest?q='+q)
 		.then(res => res.json())
 		.then((res) => {
-      console.log(res);
 			this.setState({
 				searchs: res
 			})
@@ -60,9 +59,15 @@ export default class VisualForm extends Component {
     fetch('https://api.douban.com/v2/movie/subject/'+id+'?apikey=0df993c66c0c636e29ecbb5344252a4a')
 		.then(res => res.json())
 		.then((res) => {
-      console.log(res);
+      const visual = {
+        douban_id:res.id,
+        title:res.title,
+        original_title:res.original_title,
+        douban_rating:res.rating.avg,
+        summary:res.summary
+      };
 			this.setState({
-        visual: res,
+        visual,
         view:'form',
         searchs:[]
 			})
