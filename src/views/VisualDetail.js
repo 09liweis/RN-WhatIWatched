@@ -55,38 +55,46 @@ export default class VisualDetail extends Component {
   }
   render() {
     const {visual} = this.state;
-    return (
-      <ScrollView style={styles.container}>
-        <View style={styles.header}>
-          <Image style={styles.poster} source={{uri:visual.poster}}/>
-          <View style={styles.title}>
-            <Text style={styles.tl}>{visual.title}</Text>
-            <Text style={styles.sbtl}>{visual.original_title}</Text>
-            <TouchableOpacity style={styles.ratingRow} onPress={()=>Linking.openURL('https://movie.douban.com/subject/'+visual.douban_id)}>
-              <Text style={[styles.douban,styles.ratingLabel]}>豆</Text>
-              <Text>{visual.douban_rating}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.ratingRow} onPress={()=>Linking.openURL('https://imdb.com/'+visual.imdb_id)}>
-              <Text style={[styles.imdb,styles.ratingLabel]}>IMDB</Text>
-              <Text>{visual.imdb_rating}</Text>
-            </TouchableOpacity>
+    let res = (
+      <Text>Loading</Text>
+    );
+    if (visual.title) {
+      res = (
+        <ScrollView>
+          <View style={styles.header}>
+            <Image style={styles.poster} source={{uri:visual.poster}}/>
+            <View style={styles.title}>
+              <Text style={styles.tl}>{visual.title}</Text>
+              <Text style={styles.sbtl}>{visual.original_title}</Text>
+              <TouchableOpacity style={styles.ratingRow} onPress={()=>Linking.openURL('https://movie.douban.com/subject/'+visual.douban_id)}>
+                <Text style={[styles.douban,styles.ratingLabel]}>豆</Text>
+                <Text>{visual.douban_rating}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.ratingRow} onPress={()=>Linking.openURL('https://imdb.com/'+visual.imdb_id)}>
+                <Text style={[styles.imdb,styles.ratingLabel]}>IMDB</Text>
+                <Text>{visual.imdb_rating}</Text>
+              </TouchableOpacity>
+              <Text>{visual.current_episode}/{visual.episodes}</Text>
+              <Text>{visual.release_date}</Text>
+              <Text>国家: {visual.countries.join(',')}</Text>
+              <Text>语言: {visual.languages.join(',')}</Text>
+            </View>
           </View>
-        </View>
-        <Text>{visual.current_episode}/{visual.episodes}</Text>
-				<View style={styles.VisualDetail}>
-					<Text>{visual.release_date}</Text>
-					<Text>国家: {visual.countries.join(',')}</Text>
-					<Text>语言: {visual.languages.join(',')}</Text>
-				</View>
-        <Button 
-          onPress={this.increaseEpisode}
-          title="Increate Episode"
-        />
-        <Button 
-          onPress={this.edit}
-          title="Edit"
-        />
-      </ScrollView>
+          <Button 
+            onPress={this.increaseEpisode}
+            title="Increate Episode"
+          />
+          <Button 
+            onPress={this.edit}
+            title="Edit"
+          />
+        </ScrollView>
+      );
+    }
+    return (
+      <View style={styles.container}>
+        {res}
+      </View>
     );
   }
 }
