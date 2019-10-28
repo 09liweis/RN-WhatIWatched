@@ -4,8 +4,11 @@ const {width,height} = Dimensions.get('window');
 const API = 'https://what-i-watched.herokuapp.com/api/visual/increase_episode?id=';
 
 export default class VisualDetail extends Component {
-	static navigationOptions = {
-    title: 'Visual Detail',
+	static navigationOptions = ({navigation}) => {
+    const title = navigation.getParam('title')
+    return {
+      title
+    }
   };
 	constructor(props) {
 		super(props);
