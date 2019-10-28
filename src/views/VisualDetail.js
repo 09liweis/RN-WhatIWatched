@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Image, TouchableOpacity, Button,Linking} from 'react-native';
-
+import {Platform, StyleSheet, Text,ScrollView,View, Image, TouchableOpacity, Button,Linking,Dimensions} from 'react-native';
+const {width,height} = Dimensions.get('window');
 const API = 'https://what-i-watched.herokuapp.com/api/visual/increase_episode?id=';
 
 export default class VisualDetail extends Component {
@@ -41,15 +41,20 @@ export default class VisualDetail extends Component {
   render() {
     const {visual} = this.state;
     return (
-      <View>
-      	<Text>{visual.title}</Text>
+      <ScrollView>
+        <View style={styles.header}>
+          <Image style={styles.poster} source={{uri:visual.poster}}/>
+          <View style={styles.title}>
+            <Text style={styles.tl}>{visual.title}</Text>
+            <Text>{visual.original_title}</Text>
+            <TouchableOpacity onPress={()=>Linking.openURL('https://movie.douban.com/subject/'+visual.douban_id)}>
+              <Text>豆瓣评分: {visual.douban_rating}</Text>
+            </TouchableOpacity>
+            <Text>IMDB: {visual.imdb_rating}</Text>
+          </View>
+        </View>
         <Text>{visual.current_episode}/{visual.episodes}</Text>
 				<View style={styles.VisualDetail}>
-					<Text>{visual.original_title}</Text>
-					<TouchableOpacity onPress={()=>Linking.openURL('https://movie.douban.com/subject/'+visual.douban_id)}>
-						<Text>豆瓣评分: {visual.douban_rating}</Text>
-					</TouchableOpacity>
-					<Text>IMDB: {visual.imdb_rating}</Text>
 					<Text>{visual.release_date}</Text>
 					<Text>国家: {visual.countries.join(',')}</Text>
 					<Text>语言: {visual.languages.join(',')}</Text>
@@ -62,9 +67,24 @@ export default class VisualDetail extends Component {
           onPress={this.edit}
           title="Edit"
         />
-      </View>
+      </ScrollView>
     );
   }
 }
 const styles = StyleSheet.create({
+  header:{
+    flexDirection:'row',
+  },
+  title:{
+    padding:10
+  },
+  tl:{
+    fontSize:20,
+    fontWeight:'bold',
+    fontFamily:'monospace'
+  },
+  poster:{
+    width:width/3,
+    height:200
+  }
 });
