@@ -41,7 +41,7 @@ export default class VisualDetail extends Component {
   render() {
     const {visual} = this.state;
     return (
-      <ScrollView>
+      <ScrollView style={styles.container}>
         <View style={styles.header}>
           <Image style={styles.poster} source={{uri:visual.poster}}/>
           <View style={styles.title}>
@@ -76,6 +76,10 @@ export default class VisualDetail extends Component {
   }
 }
 const styles = StyleSheet.create({
+  container:{
+    marginLeft:10,
+    marginRight:10
+  },
   header:{
     flexDirection:'row',
   },
@@ -93,7 +97,7 @@ const styles = StyleSheet.create({
   },
   poster:{
     width:width/3,
-    height:200
+    height:250
   },
   ratingRow:{
     flexDirection:'row',
