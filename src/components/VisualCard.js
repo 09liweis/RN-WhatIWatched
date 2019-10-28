@@ -26,7 +26,7 @@ export default class Visuals extends Component {
 			progress.backgroundColor = '#ffc107'
 		}
 		return (
-			<TouchableOpacity style={styles.card} onPress={() => navigation.navigate('VisualDetail',{visual: v,title:v.title})}>
+			<TouchableOpacity style={styles.card} onPress={() => navigation.navigate('VisualDetail',{id:v.id,title:v.title})}>
 				<Image style={styles.VisualImage} source={{uri: v.poster}} />
 				<Text style={[styles.VisualText,styles.progress,progress]}>{v.current_episode}/{v.episodes}</Text>
 			</TouchableOpacity>

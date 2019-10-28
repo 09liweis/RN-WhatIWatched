@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text,ScrollView,View, Image, TouchableOpacity, Button,Linking,Dimensions} from 'react-native';
 const {width,height} = Dimensions.get('window');
-const API = 'https://what-i-watched.herokuapp.com/api/visual/increase_episode?id=';
+const API = 'https://what-i-watched.herokuapp.com/api/visual/';
 
 export default class VisualDetail extends Component {
 	static navigationOptions = ({navigation}) => {
@@ -14,17 +14,29 @@ export default class VisualDetail extends Component {
 		super(props);
     const { navigation } = props;
 		this.state = {
-			visual: navigation.getParam('visual')
+			visual: {
+        id:navigation.getParam('id')
+      }
 		}
     this.increaseEpisode = this.increaseEpisode.bind(this)
     this.edit = this.edit.bind(this);
 	}
 	componentDidMount() {
-		
+		const {visual} = this.state;
+    fetch(API+visual.id)
+    .then(res => res.json())
+    .then((res) => {
+      this.setState({
+        visual: res.result
+      })
+    })
+    .catch((err) => {
+      console.error(err);
+    })
 	}
   increaseEpisode() {
     const {visual} = this.state;
-    fetch(API+visual.id)
+    fetch(API+'increase_episode?id='+visual.id)
     .then(res => res.json())
     .then((res) => {
       visual.current_episode = res.current_episode
