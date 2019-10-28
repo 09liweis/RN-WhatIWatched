@@ -55,31 +55,33 @@ export default class VisualDetail extends Component {
   }
   render() {
     const {visual} = this.state;
+    const v = visual;
     let res = (
       <Text>Loading</Text>
     );
-    if (visual.title) {
+    if (v.title) {
       res = (
         <ScrollView>
           <View style={styles.header}>
-            <Image style={styles.poster} source={{uri:visual.poster}}/>
+            <Image style={styles.poster} source={{uri:v.poster}}/>
             <View style={styles.title}>
-              <Text style={styles.tl}>{visual.title}</Text>
-              <Text style={styles.sbtl}>{visual.original_title}</Text>
-              <TouchableOpacity style={styles.ratingRow} onPress={()=>Linking.openURL('https://movie.douban.com/subject/'+visual.douban_id)}>
+              <Text style={styles.tl}>{v.title}</Text>
+              <Text style={styles.sbtl}>{v.original_title}</Text>
+              <TouchableOpacity style={styles.ratingRow} onPress={()=>Linking.openURL('https://movie.douban.com/subject/'+v.douban_id)}>
                 <Text style={[styles.douban,styles.ratingLabel]}>豆</Text>
-                <Text>{visual.douban_rating}</Text>
+                <Text>{v.douban_rating}</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.ratingRow} onPress={()=>Linking.openURL('https://imdb.com/'+visual.imdb_id)}>
+              <TouchableOpacity style={styles.ratingRow} onPress={()=>Linking.openURL('https://imdb.com/'+v.imdb_id)}>
                 <Text style={[styles.imdb,styles.ratingLabel]}>IMDB</Text>
-                <Text>{visual.imdb_rating}</Text>
+                <Text>{v.imdb_rating}</Text>
               </TouchableOpacity>
-              <Text>{visual.current_episode}/{visual.episodes}</Text>
-              <Text>{visual.release_date}</Text>
-              <Text>国家: {visual.countries.join(',')}</Text>
-              <Text>语言: {visual.languages.join(',')}</Text>
+              <Text>{v.current_episode}/{v.episodes}</Text>
+              <Text>{v.release_date}</Text>
+              <Text>国家: {v.countries.join(',')}</Text>
+              <Text>语言: {v.languages.join(',')}</Text>
             </View>
           </View>
+          <Text>{v.summary}</Text>
           <Button 
             onPress={this.increaseEpisode}
             title="Increate Episode"
