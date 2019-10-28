@@ -47,8 +47,9 @@ export default class VisualDetail extends Component {
           <View style={styles.title}>
             <Text style={styles.tl}>{visual.title}</Text>
             <Text style={styles.sbtl}>{visual.original_title}</Text>
-            <TouchableOpacity onPress={()=>Linking.openURL('https://movie.douban.com/subject/'+visual.douban_id)}>
-              <Text>豆瓣评分: {visual.douban_rating}</Text>
+            <TouchableOpacity style={styles.doubanRow} onPress={()=>Linking.openURL('https://movie.douban.com/subject/'+visual.douban_id)}>
+              <Text style={styles.douban}>豆</Text>
+              <Text>{visual.douban_rating}</Text>
             </TouchableOpacity>
             <Text>IMDB: {visual.imdb_rating}</Text>
           </View>
@@ -90,5 +91,18 @@ const styles = StyleSheet.create({
   poster:{
     width:width/3,
     height:200
+  },
+  doubanRow:{
+    flexDirection:'row',
+    alignItems:'center'
+  },
+  douban:{
+    marginRight:5,
+    backgroundColor:'#187610',
+    color:'#fff',
+    paddingLeft:4,
+    paddingRight:4,
+    paddingTop:2,
+    paddingBottom:2
   }
 });
