@@ -47,11 +47,14 @@ export default class VisualDetail extends Component {
           <View style={styles.title}>
             <Text style={styles.tl}>{visual.title}</Text>
             <Text style={styles.sbtl}>{visual.original_title}</Text>
-            <TouchableOpacity style={styles.doubanRow} onPress={()=>Linking.openURL('https://movie.douban.com/subject/'+visual.douban_id)}>
-              <Text style={styles.douban}>豆</Text>
+            <TouchableOpacity style={styles.ratingRow} onPress={()=>Linking.openURL('https://movie.douban.com/subject/'+visual.douban_id)}>
+              <Text style={[styles.douban,styles.ratingLabel]}>豆</Text>
               <Text>{visual.douban_rating}</Text>
             </TouchableOpacity>
-            <Text>IMDB: {visual.imdb_rating}</Text>
+            <TouchableOpacity style={styles.ratingRow} onPress={()=>Linking.openURL('https://imdb.com/'+visual.imdb_id)}>
+              <Text style={[styles.imdb,styles.ratingLabel]}>IMDB</Text>
+              <Text>{visual.imdb_rating}</Text>
+            </TouchableOpacity>
           </View>
         </View>
         <Text>{visual.current_episode}/{visual.episodes}</Text>
@@ -92,17 +95,23 @@ const styles = StyleSheet.create({
     width:width/3,
     height:200
   },
-  doubanRow:{
+  ratingRow:{
     flexDirection:'row',
-    alignItems:'center'
+    alignItems:'center',
+    marginTop:5
   },
-  douban:{
+  ratingLabel:{
     marginRight:5,
-    backgroundColor:'#187610',
-    color:'#fff',
     paddingLeft:4,
     paddingRight:4,
     paddingTop:2,
     paddingBottom:2
+  },
+  douban:{
+    backgroundColor:'#187610',
+    color:'#fff',
+  },
+  imdb:{
+    backgroundColor:'#f5c617',
   }
 });
