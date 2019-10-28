@@ -46,7 +46,7 @@ export default class VisualDetail extends Component {
           <Image style={styles.poster} source={{uri:visual.poster}}/>
           <View style={styles.title}>
             <Text style={styles.tl}>{visual.title}</Text>
-            <Text>{visual.original_title}</Text>
+            <Text style={styles.sbtl}>{visual.original_title}</Text>
             <TouchableOpacity onPress={()=>Linking.openURL('https://movie.douban.com/subject/'+visual.douban_id)}>
               <Text>豆瓣评分: {visual.douban_rating}</Text>
             </TouchableOpacity>
@@ -82,6 +82,10 @@ const styles = StyleSheet.create({
     fontSize:20,
     fontWeight:'bold',
     fontFamily:'monospace'
+  },
+  sbtl:{
+    fontSize:16,
+    color:'#bbc2cf'
   },
   poster:{
     width:width/3,
