@@ -81,7 +81,7 @@ export default class VisualDetail extends Component {
               <Text>语言: {v.languages.join(',')}</Text>
             </View>
           </View>
-          <Text>{v.summary}</Text>
+          <Text style={styles.summary}>{v.summary}</Text>
           <Button 
             onPress={this.increaseEpisode}
             title="Increate Episode"
@@ -142,5 +142,10 @@ const styles = StyleSheet.create({
   },
   imdb:{
     backgroundColor:'#f5c617',
+  },
+  summary:{
+    marginTop:20,
+    fontSize:16,
+    lineHeight:25
   }
 });
