@@ -71,7 +71,7 @@ export default class VisualDetail extends Component {
                 <Text style={[styles.douban,styles.ratingLabel]}>豆</Text>
                 <Text>{v.douban_rating}</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.ratingRow} onPress={()=>Linking.openURL('https://imdb.com/'+v.imdb_id)}>
+              <TouchableOpacity style={styles.ratingRow} onPress={()=>Linking.openURL('https://imdb.com/title/'+v.imdb_id)}>
                 <Text style={[styles.imdb,styles.ratingLabel]}>IMDB</Text>
                 <Text>{v.imdb_rating}</Text>
               </TouchableOpacity>
