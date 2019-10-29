@@ -46,6 +46,7 @@ export default class Visuals extends Component {
 	}
 	pullToRefresh() {
 		this.page = 1;
+		this.getVisuals();
 	}
 	handleLoadMore(){
 		this.page = this.page + 1;
