@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text,ScrollView,View, Image, TouchableOpacity, Button,Linking,Dimensions} from 'react-native';
-import {API} from '../utils/constants.js'
+import {API_DETAIL} from '../utils/constants.js'
 const {width,height} = Dimensions.get('window');
 
 export default class VisualDetail extends Component {
@@ -23,7 +23,7 @@ export default class VisualDetail extends Component {
 	}
 	componentDidMount() {
 		const {visual} = this.state;
-    fetch(API+visual.id)
+    fetch(API_DETAIL+visual.id)
     .then(res => res.json())
     .then((res) => {
       this.setState({

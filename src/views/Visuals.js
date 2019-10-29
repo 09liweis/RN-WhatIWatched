@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, FlatList, TouchableOpacity, TextInput,Button} from 'react-native';
 import VisualCard from '../components/VisualCard'
+import {API_LIST} from '../utils/constants.js'
 
 export default class Visuals extends Component {
 	static navigationOptions = {
@@ -16,7 +17,7 @@ export default class Visuals extends Component {
 			visuals: [],
 			search: '',
 			loading:false,
-			api: 'https://what-i-watched.herokuapp.com/api/visuals?limit=20&page='
+			api: API_LIST+'?limit=20&page='
 		}
 	}
 	componentDidMount() {
