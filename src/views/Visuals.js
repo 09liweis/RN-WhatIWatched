@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, FlatList, TouchableOpacity, TextInput,Button} from 'react-native';
 import VisualCard from '../components/VisualCard'
-import {API_LIST} from '../utils/constants.js'
+import {API,API_LIST} from '../utils/constants.js'
 
 export default class Visuals extends Component {
 	static navigationOptions = {
@@ -59,7 +59,7 @@ export default class Visuals extends Component {
 		if (search == '') {
 			url = this.state.api;
 		} else {
-			url = 'https://what-i-watched.herokuapp.com/api/search?keyword=' + search;
+			url = API + 'search?keyword=' + search;
 		}
 		fetch(url)
 		.then(res => res.json())

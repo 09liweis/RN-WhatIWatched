@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text,ScrollView,View, Image, TouchableOpacity, Button,Linking,Dimensions} from 'react-native';
-import {API_DETAIL} from '../utils/constants.js'
+import {API_DETAIL,API_INCREASE_EPISODE} from '../utils/constants.js'
 const {width,height} = Dimensions.get('window');
 
 export default class VisualDetail extends Component {
@@ -36,7 +36,7 @@ export default class VisualDetail extends Component {
 	}
   increaseEpisode() {
     const {visual} = this.state;
-    fetch(API+'increase_episode?id='+visual.id)
+    fetch(API_INCREASE_EPISODE+visual.id)
     .then(res => res.json())
     .then((res) => {
       visual.current_episode = res.current_episode
