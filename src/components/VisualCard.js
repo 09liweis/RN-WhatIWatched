@@ -1,37 +1,23 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Image,Linking,TouchableOpacity,Dimensions} from 'react-native';
+import {Platform, StyleSheet, Text,Image,TouchableOpacity,Dimensions} from 'react-native';
 
 const {width} = Dimensions.get('window');
 const cardWdith = (width)/3
 
-export default class Visuals extends Component {
-	static navigationOptions = {
-		title: 'Welcome',
-		headerStyle: {
-			backgroundColor: 'green'
-		}
-	};
-	constructor(props) {
-		super(props);
+export default Visuals = (props) => {
+	const {navigation,v} = props;
+	let progress = {backgroundColor:'red'}
+	if (v.current_episode == v.episodes) {
+		progress.backgroundColor = '#3e8c3e';
+	} else if (v.current_episode > 0) {
+		progress.backgroundColor = '#ffc107'
 	}
-	componentDidMount() {
-	}
-	
-	render() {
-		const {navigation,v} = this.props;
-		let progress = {backgroundColor:'red'}
-		if (v.current_episode == v.episodes) {
-			progress.backgroundColor = '#3e8c3e';
-		} else if (v.current_episode > 0) {
-			progress.backgroundColor = '#ffc107'
-		}
-		return (
-			<TouchableOpacity style={styles.card} onPress={() => navigation.navigate('VisualDetail',{id:v.id,title:v.title})}>
-				<Image style={styles.VisualImage} source={{uri: v.poster}} />
-				<Text style={[styles.VisualText,styles.progress,progress]}>{v.current_episode}/{v.episodes}</Text>
-			</TouchableOpacity>
-		);
-	}
+	return (
+		<TouchableOpacity style={styles.card} onPress={() => navigation.navigate('VisualDetail',{id:v.id,title:v.title})}>
+			<Image style={styles.VisualImage} source={{uri: v.poster}} />
+			<Text style={[styles.VisualText,styles.progress,progress]}>{v.current_episode}/{v.episodes}</Text>
+		</TouchableOpacity>
+	);
 }
 const elevation = 5;
 const styles = StyleSheet.create({
