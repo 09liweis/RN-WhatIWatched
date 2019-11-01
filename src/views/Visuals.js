@@ -77,10 +77,12 @@ export default class Visuals extends Component {
 		const {visuals,loading} = this.state;
     return (
       <View style={styles.MainContainer}>
-				<Button
-          title='Add New'
-          onPress={() => navigation.navigate('VisualForm')}
-        />
+				<TouchableOpacity style={styles.addNew}>
+					<Button
+						title='Add'
+						onPress={() => navigation.navigate('VisualForm')}
+					/>
+				</TouchableOpacity>
       	<TextInput
 					style={styles.searchBar}
 					placeholder={'Search Visual'}
@@ -105,6 +107,14 @@ export default class Visuals extends Component {
 }
 const styles = StyleSheet.create({
   MainContainer: {
+		position:'relative'
+	},
+	addNew:{
+		position:'absolute',
+		bottom:80,
+		right:30,
+		alignSelf:'flex-start',
+		zIndex:1000
 	},
 	searchBar: {
 		height: 40,
