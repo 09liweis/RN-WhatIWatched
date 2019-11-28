@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text,ScrollView,View, Image, TouchableOpacity, Button,Linking,Dimensions} from 'react-native';
 import {API_DETAIL,API_INCREASE_EPISODE,API_DOUBAN_DETAIL} from '../utils/constants.js'
+import { FlatList } from 'react-native-gesture-handler';
 const {width,height} = Dimensions.get('window');
 
 export default class VisualDetail extends Component {
@@ -62,7 +63,7 @@ export default class VisualDetail extends Component {
     navigation.navigate('VisualForm',{visualId: visual.id})
   }
   render() {
-    const {visual} = this.state;
+    const {visual,douban} = this.state;
     const v = visual;
     let res = (
       <Text>Loading</Text>
@@ -90,6 +91,19 @@ export default class VisualDetail extends Component {
             </View>
           </View>
           <Text style={styles.summary}>{v.summary}</Text>
+          {(douban.casts && douban.casts.length > 0)?
+          <FlatList
+            horizontal
+            data={douban.casts}
+            keyExtractor={item => item.id.toString()}
+            renderItem={({item}) =>
+              <View style={styles.avtContainer}>
+                <Image resizeMode="contain" style={styles.avt} source={{uri:item.avatars.large}}/>
+                <Text>{item.name_en}</Text>
+              </View>
+            }
+          />
+          :null}
           <Button 
             onPress={this.increaseEpisode}
             title="Increate Episode"
@@ -155,5 +169,12 @@ const styles = StyleSheet.create({
     marginTop:20,
     fontSize:16,
     lineHeight:25
+  },
+  avtContainer:{
+    flexDirection:'column'
+  },
+  avt: {
+    width:width*3/4,
+    height:250
   }
 });
