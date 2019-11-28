@@ -23,7 +23,7 @@ export default class App extends Component<Props> {
 
 class Home extends Component<Props> {
   static navigationOptions = {
-    title: 'Welcome to What I Watched!',
+    title: 'What I Watched!',
     headerStyle: {
       backgroundColor: '#fff',
     },
