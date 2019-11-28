@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text,ScrollView,View, Image, TouchableOpacity, Button,Linking,Dimensions} from 'react-native';
-import {API_DETAIL,API_INCREASE_EPISODE} from '../utils/constants.js'
+import {API_DETAIL,API_INCREASE_EPISODE,API_DOUBAN_DETAIL} from '../utils/constants.js'
 const {width,height} = Dimensions.get('window');
 
 export default class VisualDetail extends Component {
@@ -16,7 +16,8 @@ export default class VisualDetail extends Component {
 		this.state = {
 			visual: {
         id:navigation.getParam('id')
-      }
+      },
+      douban:{}
 		}
     this.increaseEpisode = this.increaseEpisode.bind(this)
     this.edit = this.edit.bind(this);
@@ -26,14 +27,21 @@ export default class VisualDetail extends Component {
     fetch(API_DETAIL+visual.id)
     .then(res => res.json())
     .then((res) => {
+      this.getDoubanDetail(res.result.douban_id);
       this.setState({
         visual: res.result
       })
     })
     .catch((err) => {
       console.error(err);
+    });
+  }
+  getDoubanDetail(id) {
+    const url = API_DOUBAN_DETAIL.replace('{id}',id);
+    fetch(url).then(res=>res.json()).then((res)=>{
+      this.setState({douban:res});
     })
-	}
+  }
   increaseEpisode() {
     const {visual} = this.state;
     fetch(API_INCREASE_EPISODE+visual.id)
