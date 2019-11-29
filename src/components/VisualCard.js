@@ -23,11 +23,6 @@ const elevation = 5;
 const styles = StyleSheet.create({
 	card: {
 		backgroundColor:'#fff',
-		// flex: 1,
-		// flexDirection: 'row',
-		// marginTop:15,
-		// marginLeft:15,
-		// marginRight:15,
 		elevation,
 		shadowColor: 'black',
 		shadowOffset: { width: 0, height: 0.5 * elevation },
