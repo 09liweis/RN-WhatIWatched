@@ -11,10 +11,6 @@ import {Platform, StyleSheet} from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import Home from './src/screens/Home';  //Tab Nav
 
-import Visuals from './src/views/Visuals';
-import VisualDetail from './src/views/VisualDetail';
-import VisualForm from './src/views/VisualForm';
-
 type Props = {};
 export default class App extends Component<Props> {
   render() {

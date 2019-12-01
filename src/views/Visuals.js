@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
+import { createStackNavigator } from 'react-navigation';
 import {Platform, StyleSheet, Text, View, FlatList, TouchableOpacity, TextInput,Button} from 'react-native';
 import VisualCard from '../components/VisualCard'
 import {API,API_LIST} from '../utils/constants.js'
 
-export default class Visuals extends Component {
+class Visuals extends Component {
 	static navigationOptions = {
 		title: 'Welcome',
 		headerStyle: {
@@ -126,3 +127,42 @@ const styles = StyleSheet.create({
 		marginRight: 15
 	},
 });
+
+import VisualDetail from './VisualDetail';
+import VisualForm from './VisualForm';
+
+class VisualHome extends Component {
+  static navigationOptions = {
+    title: 'What I Watched!',
+    headerStyle: {
+      backgroundColor: '#fff',
+    },
+    headerTintColor:'#090f2b'
+  };
+  render() {
+    return (
+      <View style={styles.container}>
+        <Visuals navigation={this.props.navigation} />
+      </View>
+    );
+  }
+}
+
+const AppStackNavigator = createStackNavigator(
+{
+  VisualHome: VisualHome,
+  VisualDetail: VisualDetail,
+  VisualForm: VisualForm,
+},
+{
+  initialRouteName: 'VisualHome'
+},
+{
+  defaultNavigationOptions: {
+    headerStyle: {
+      backgroundColor: 'orange'
+    }
+  }
+}
+);
+export default AppStackNavigator;
