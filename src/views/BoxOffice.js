@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, FlatList, TouchableOpacity, TextInput,Button} from 'react-native';
 import {API,API_LIST} from '../utils/constants.js'
 
-export default class DoubanBoxOffice extends Component {
+export default class BoxOffice extends Component {
 	constructor(props) {
 		super(props);
 		this.page = 1;
