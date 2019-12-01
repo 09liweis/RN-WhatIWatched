@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Visuals from '../views/Visuals';
-import BoxOffice from '../views/BoxOffice'
+import BoxOffice from '../views/BoxOffice/index'
 
 const Home = createBottomTabNavigator({
   Visuals: {
@@ -11,7 +11,7 @@ const Home = createBottomTabNavigator({
 			title: "Visuals",
 			tabBarIcon: ({ tintColor }) => (
 				<Icon
-					name="microchip"
+					name="film"
 					size={17}
 					color={tintColor} />
 			)
