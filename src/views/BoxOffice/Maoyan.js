@@ -19,7 +19,7 @@ export default class Maoyan extends Component {
 		fetch(API_MAOYAN)
 		.then(res => res.json())
 		.then((res) => {
-			this.setState({maoyan:res,loading:false});
+			this.setState({maoyan:res.data,loading:false});
 		})
 		.catch((err) => {
 			console.error(err);
@@ -32,8 +32,20 @@ export default class Maoyan extends Component {
 			view = <View style={styles.loading}><ActivityIndicator size="large" color="#0000ff" /></View>;
 		} else {
 			view = <React.Fragment>
-								
-								
+								<Text style={styles.title}>{maoyan.serverTime}</Text>
+								<FlatList
+									data={maoyan.list}
+									keyExtractor={item => item.movieId.toString()}
+									renderItem={({item}) =>
+										<View style={styles.boxoffice}>
+											<View style={styles.boxofficeInfo}>
+												<Text>{item.movieName}</Text>
+												<Text>{item.releaseInfo}</Text>
+												<Text>{item.sumBoxInfo}</Text>
+											</View>
+										</View>
+									}
+									/>
 							</React.Fragment>
 		}
     return (
@@ -51,5 +63,9 @@ const styles = StyleSheet.create({
 		alignItems:'center',
 		justifyContent:'center'
 	},
-	
+	title:{
+		fontSize:30,
+		textAlign:'center',
+		margin:10
+	}
 });
