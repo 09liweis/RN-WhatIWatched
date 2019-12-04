@@ -8,14 +8,16 @@ export default class Maoyan extends Component {
 		this.page = 1;
 		this.state = {
 			maoyan: {},
-			loading:false
+			loading:false,
 		}
 	}
 	componentDidMount() {
 		this.getMaoyan()
 	}
 	getMaoyan(){
-		this.setState({loading:true});
+		if (!this.state.maoyan.serverTime) {
+			this.setState({loading:true});
+		}
 		fetch(API_MAOYAN)
 		.then(res => res.json())
 		.then((res) => {
