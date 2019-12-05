@@ -93,13 +93,18 @@ export default class VisualDetail extends Component {
           <Text style={styles.summary}>{v.summary}</Text>
           {(douban.casts && douban.casts.length > 0)?
           <FlatList
+            showsHorizontalScrollIndicator={false}
+            // ItemSeparatorComponent={()=><View style={{width:10}}/>}
             horizontal
             data={douban.casts}
             keyExtractor={item => item.id.toString()}
             renderItem={({item}) =>
               <View style={styles.avtContainer}>
                 <Image resizeMode="contain" style={styles.avt} source={{uri:item.avatars.large}}/>
-                <Text>{item.name_en}</Text>
+                <View style={styles.avtName}>
+                  <Text>{item.name}</Text>
+                  <Text>{item.name_en}</Text>
+                </View>
               </View>
             }
           />
@@ -171,10 +176,14 @@ const styles = StyleSheet.create({
     lineHeight:25
   },
   avtContainer:{
-    flexDirection:'column'
+    flexDirection:'column',
+    width:width/4,
   },
   avt: {
-    width:width*3/4,
-    height:250
+    width:width/4,
+    height:150
+  },
+  avtName:{
+    padding:5
   }
 });
