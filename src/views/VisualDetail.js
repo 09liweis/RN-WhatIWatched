@@ -88,6 +88,14 @@ export default class VisualDetail extends Component {
               <Text>{v.release_date}</Text>
               <Text>国家: {v.countries.join(',')}</Text>
               <Text>语言: {v.languages.join(',')}</Text>
+              <Button 
+                onPress={this.increaseEpisode}
+                title="Increate Episode"
+              />
+              <Button 
+                onPress={this.edit}
+                title="Edit"
+              />
             </View>
           </View>
           <Text style={styles.summary}>{v.summary}</Text>
@@ -109,14 +117,6 @@ export default class VisualDetail extends Component {
             }
           />
           :null}
-          <Button 
-            onPress={this.increaseEpisode}
-            title="Increate Episode"
-          />
-          <Button 
-            onPress={this.edit}
-            title="Edit"
-          />
         </ScrollView>
       );
     }
@@ -136,7 +136,8 @@ const styles = StyleSheet.create({
     flexDirection:'row',
   },
   title:{
-    padding:10
+    padding:10,
+    width:width - width/3
   },
   tl:{
     fontSize:20,
