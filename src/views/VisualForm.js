@@ -4,7 +4,7 @@ import { ScrollView, FlatList } from 'react-native-gesture-handler';
 
 export default class VisualForm extends Component {
 	static navigationOptions = {
-    title: 'Add New Visual',
+    title: 'Visual Form',
   };
 	constructor(props) {
 		super(props);
@@ -25,9 +25,14 @@ export default class VisualForm extends Component {
         release_date: '',
         poster: '',
         summary: '',
+        online_source: '',
         episodes: 1,
         current_episode: 0,
-        visual_type: 'movie'
+        visual_type: 'movie',
+        website: '',
+        languages:[],
+        countries:[],
+        duration:0,
 			}
 		}
   }
@@ -35,9 +40,10 @@ export default class VisualForm extends Component {
     fetch('https://what-i-watched.herokuapp.com/api/visual/' + id)
 		.then(res => res.json())
 		.then((res) => {
-			this.setState({
-				visual: res.result
-			})
+      const douban_id = res.result.douban_id;
+      this.setState({visual:res.result},()=>{
+        this.getDoubanDetail(douban_id);
+      });
 		})
 		.catch((err) => {
 			console.error(err);
@@ -47,6 +53,7 @@ export default class VisualForm extends Component {
     fetch('https://movie.douban.com/j/subject_suggest?q='+q)
 		.then(res => res.json())
 		.then((res) => {
+      console.log(res);
 			this.setState({
 				searchs: res
 			})
@@ -59,13 +66,19 @@ export default class VisualForm extends Component {
     fetch('https://api.douban.com/v2/movie/subject/'+id+'?apikey=0df993c66c0c636e29ecbb5344252a4a')
 		.then(res => res.json())
 		.then((res) => {
-      const visual = {
-        douban_id:res.id,
-        title:res.title,
-        original_title:res.original_title,
-        douban_rating:res.rating.avg,
-        summary:res.summary
-      };
+      let visual = this.state.visual;
+      visual.douban_id = res.id;
+      visual.douban_rating = res.rating.average;
+      visual.title = res.title;
+      visual.original_title = res.original_title;
+      visual.douban_rating = res.rating.average || 0;
+      visual.summary = res.summary;
+      visual.episodes = res.episodes_count;
+      visual.visual_type = res.subtype;
+      visual.poster = res.images.large;
+      visual.languages = res.languages;
+      visual.countries = res.countries;
+      visual.duration = res.duration;
 			this.setState({
         visual,
         view:'form',
@@ -90,12 +103,20 @@ export default class VisualForm extends Component {
   }
   render() {
     let {visual,view,searchs,q} = this.state;
+    delete visual.countries;
+    delete visual.languages;
     const fields = Object.keys(visual);
-    let forms = fields.map((fields)=>
-      <FormInput updateInput={this.updateInput} key={fields} fields={fields} value={visual[fields].toString()} />
+    
+    let forms = fields.map((field)=>{
+      var value = '';
+      if (visual[field]) {
+        value = visual[field].toString()
+      }
+      return <FormInput updateInput={this.updateInput} key={field} field={field} value={value} />;
+      }
     );
     let pageView = (
-      <ScrollView style={styles.pageContainer}>
+      <ScrollView style={styles.pageContainer} showsVerticalScrollIndicator={false} >
         {forms}
         <Button title="Add/Update" onPress={()=>console.log('test')}></Button>
       </ScrollView>
@@ -132,11 +153,11 @@ class FormInput extends Component {
   }
   render() {
     return (
-      <View>
-        <Text>{this.props.fields}</Text>
+      <View style={styles.formField}>
+        <Text>{this.props.field}</Text>
         <TextInput
           style={styles.TextInput}
-          onChangeText={(value) => this.props.updateInput(this.props.fields, value)}
+          onChangeText={(value) => this.props.updateInput(this.props.field, value)}
           value={this.props.value}
         />
       </View>
@@ -146,8 +167,13 @@ class FormInput extends Component {
 
 const styles = StyleSheet.create({
   pageContainer: {
-    height: '100%'
-	},
+    height: '100%',
+    margin:10,
+    paddingBottom:100
+  },
+  formField:{
+    marginBottom:10
+  },
   TextInput: {
     borderColor: 'gray',
 		borderWidth: 1,
