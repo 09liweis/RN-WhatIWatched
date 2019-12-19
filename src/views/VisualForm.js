@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, TextInput, Image,Button} from 'react-native';
+import {Platform, StyleSheet, Text, View, TextInput, Image,Button, Alert} from 'react-native';
 import { ScrollView, FlatList } from 'react-native-gesture-handler';
 
 export default class VisualForm extends Component {
@@ -11,6 +11,7 @@ export default class VisualForm extends Component {
 		this.state = {
       searchs: [],
       q:'',
+      focusField:'',
 			visual: {
 				id: 0,
         title: '',
@@ -34,7 +35,8 @@ export default class VisualForm extends Component {
         countries:[],
         duration:0,
 			}
-		}
+    };
+    this.updateInput = this.updateInput.bind(this);
   }
   getVisualDetail(id) {
     fetch('https://what-i-watched.herokuapp.com/api/visual/' + id)
@@ -53,7 +55,6 @@ export default class VisualForm extends Component {
     fetch('https://movie.douban.com/j/subject_suggest?q='+q)
 		.then(res => res.json())
 		.then((res) => {
-      console.log(res);
 			this.setState({
 				searchs: res
 			})
@@ -73,12 +74,15 @@ export default class VisualForm extends Component {
       visual.original_title = res.original_title;
       visual.douban_rating = res.rating.average || 0;
       visual.summary = res.summary;
-      visual.episodes = res.episodes_count;
+      visual.episodes = res.episodes_count || 1;
       visual.visual_type = res.subtype;
       visual.poster = res.images.large;
       visual.languages = res.languages;
       visual.countries = res.countries;
-      visual.duration = res.duration;
+      visual.release_date = res.pubdates[0];
+      if (res.durations.length > 0) {
+        visual.duration = res.durations[0];
+      }
 			this.setState({
         visual,
         view:'form',
@@ -96,23 +100,40 @@ export default class VisualForm extends Component {
       this.getVisualDetail(visualId);
     }
   }
+  updateFocusStyle(field) {
+    this.setState({focusField:field});
+  }
   updateInput(key, value) {
     let visual = this.state.visual;
     visual[key] = value;
     this.setState({visual});
   }
   render() {
-    let {visual,view,searchs,q} = this.state;
+    let {visual,view,searchs,q,focusField} = this.state;
     delete visual.countries;
     delete visual.languages;
     const fields = Object.keys(visual);
     
     let forms = fields.map((field)=>{
       var value = '';
+      let focusStyle;
       if (visual[field]) {
         value = visual[field].toString()
       }
-      return <FormInput updateInput={this.updateInput} key={field} field={field} value={value} />;
+      if (focusField == field) {
+        focusStyle = styles.focusStyle;
+      }
+      return (
+        <View style={styles.formField} key={field}>
+          <Text style={styles.textLabel}>{field}</Text>
+          <TextInput
+            onFocus={()=>this.updateFocusStyle(field)}
+            style={[styles.textInput,focusStyle]}
+            onChangeText={(value) => this.updateInput(field, value)}
+            value={value}
+          />
+        </View>
+      )
       }
     );
     let pageView = (
@@ -147,24 +168,6 @@ export default class VisualForm extends Component {
   }
 }
 
-class FormInput extends Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <View style={styles.formField}>
-        <Text>{this.props.field}</Text>
-        <TextInput
-          style={styles.TextInput}
-          onChangeText={(value) => this.props.updateInput(this.props.field, value)}
-          value={this.props.value}
-        />
-      </View>
-    );
-  }
-}
-
 const styles = StyleSheet.create({
   pageContainer: {
     height: '100%',
@@ -174,9 +177,18 @@ const styles = StyleSheet.create({
   formField:{
     marginBottom:10
   },
-  TextInput: {
-    borderColor: 'gray',
-		borderWidth: 1,
-		borderRadius: 10,
+  textLabel:{
+    // textTransform:'capitalize',
+    marginBottom:5
+  },
+  textInput: {
+    padding:0,
+    borderWidth:0,
+    borderBottomColor:'gray',
+		borderBottomWidth: 1,
+  },
+  focusStyle:{
+    borderBottomColor:'green',
+    borderBottomWidth:2
   }
 });
