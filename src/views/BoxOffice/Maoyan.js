@@ -40,9 +40,9 @@ export default class Maoyan extends Component {
 						data={maoyan.list}
 						keyExtractor={item => item.movieId.toString()}
 						renderItem={({item}) =>
-							<View style={styles.boxoffice}>
+							<View style={styles.maoyan}>
 								<View style={styles.boxofficeInfo}>
-									<Text>{item.movieName}</Text>
+									<Text style={styles.maoyanTl}>{item.movieName}</Text>
 									<Text>{item.releaseInfo}</Text>
 									<Text>{item.sumBoxInfo}</Text>
 								</View>
@@ -71,5 +71,14 @@ const styles = StyleSheet.create({
 		fontSize:30,
 		textAlign:'center',
 		margin:10
+	},
+	maoyan:{
+		padding:20,
+		borderBottomColor:'#ccc',
+		borderBottomWidth:1,
+		borderStyle:'solid'
+	},
+	maoyanTl:{
+		fontSize:24
 	}
 });
