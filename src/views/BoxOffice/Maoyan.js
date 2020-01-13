@@ -33,22 +33,24 @@ export default class Maoyan extends Component {
 		if (loading) {
 			view = <View style={styles.loading}><ActivityIndicator size="large" color="#0000ff" /></View>;
 		} else {
-			view = <React.Fragment>
-								<Text style={styles.title}>{maoyan.serverTime}</Text>
-								<FlatList
-									data={maoyan.list}
-									keyExtractor={item => item.movieId.toString()}
-									renderItem={({item}) =>
-										<View style={styles.boxoffice}>
-											<View style={styles.boxofficeInfo}>
-												<Text>{item.movieName}</Text>
-												<Text>{item.releaseInfo}</Text>
-												<Text>{item.sumBoxInfo}</Text>
-											</View>
-										</View>
-									}
-									/>
-							</React.Fragment>
+			view = (
+				<React.Fragment>
+					<Text style={styles.title}>{maoyan.serverTime}</Text>
+					<FlatList
+						data={maoyan.list}
+						keyExtractor={item => item.movieId.toString()}
+						renderItem={({item}) =>
+							<View style={styles.boxoffice}>
+								<View style={styles.boxofficeInfo}>
+									<Text>{item.movieName}</Text>
+									<Text>{item.releaseInfo}</Text>
+									<Text>{item.sumBoxInfo}</Text>
+								</View>
+							</View>
+						}
+						/>
+				</React.Fragment>
+			);
 		}
     return (
 			<View style={styles.container}>
