@@ -13,6 +13,9 @@ export default class Maoyan extends Component {
 	}
 	componentDidMount() {
 		this.getMaoyan()
+		setInterval(()=>{
+			this.getMaoyan();
+		},3000);
 	}
 	getMaoyan(){
 		if (!this.state.maoyan.serverTime) {
@@ -44,6 +47,7 @@ export default class Maoyan extends Component {
 								<View style={styles.boxofficeInfo}>
 									<Text style={styles.maoyanTl}>{item.movieName}</Text>
 									<Text>{item.releaseInfo}</Text>
+									<Text>{item.boxInfo}{maoyan.totalBoxUnitInfo}</Text>
 									<Text>{item.sumBoxInfo}</Text>
 								</View>
 							</View>
