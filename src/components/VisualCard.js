@@ -54,6 +54,6 @@ const styles = StyleSheet.create({
 		left:0,
 		color:'#fff',
 		padding:4,
-		borderRadius:2
+		borderRadius:5
 	}
 });
