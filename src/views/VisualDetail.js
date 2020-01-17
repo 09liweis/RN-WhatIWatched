@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text,ScrollView,View, Image, TouchableOpacity, Button,Linking,Dimensions} from 'react-native';
-import {API_DETAIL,API_INCREASE_EPISODE,API_DOUBAN_DETAIL} from '../utils/constants.js'
+import {API_DETAIL,API_INCREASE_EPISODE,API_DOUBAN_DETAIL,API_DOUBAN_DETAIL_PHOTO} from '../utils/constants.js'
 import { FlatList } from 'react-native-gesture-handler';
 const {width,height} = Dimensions.get('window');
 
@@ -18,7 +18,8 @@ export default class VisualDetail extends Component {
 			visual: {
         id:navigation.getParam('id')
       },
-      douban:{}
+      douban:{},
+      photos:[]
 		}
     this.increaseEpisode = this.increaseEpisode.bind(this)
     this.edit = this.edit.bind(this);
@@ -28,7 +29,9 @@ export default class VisualDetail extends Component {
     fetch(API_DETAIL+visual.id)
     .then(res => res.json())
     .then((res) => {
-      this.getDoubanDetail(res.result.douban_id);
+      var doubanId = res.result.douban_id;
+      this.getDoubanDetail(doubanId);
+      this.getPhotos(doubanId)
       this.setState({
         visual: res.result
       })
@@ -41,6 +44,13 @@ export default class VisualDetail extends Component {
     const url = API_DOUBAN_DETAIL.replace('{id}',id);
     fetch(url).then(res=>res.json()).then((res)=>{
       this.setState({douban:res});
+    })
+  }
+  getPhotos(id) {
+    const url = API_DOUBAN_DETAIL_PHOTO.replace('{id}',id);
+    fetch(url).then(res=>res.json()).then((res)=>{
+      console.log(res);
+      this.setState({photos:res.photos});
     })
   }
   increaseEpisode() {
@@ -63,7 +73,7 @@ export default class VisualDetail extends Component {
     navigation.navigate('VisualForm',{visualId: visual.id})
   }
   render() {
-    const {visual,douban} = this.state;
+    const {visual,douban,photos} = this.state;
     const v = visual;
     let res = (
       <Text>Loading</Text>
@@ -113,6 +123,19 @@ export default class VisualDetail extends Component {
                   <Text>{item.name}</Text>
                   <Text>{item.name_en}</Text>
                 </View>
+              </View>
+            }
+          />
+          :null}
+          {(photos && photos.length > 0)?
+          <FlatList
+            showsHorizontalScrollIndicator={false}
+            horizontal
+            data={photos}
+            keyExtractor={item => item.id.toString()}
+            renderItem={({item}) =>
+              <View style={styles.photoContainer}>
+                <Image resizeMode="cover" style={styles.photo} source={{uri:item.icon}}/>
               </View>
             }
           />
@@ -186,5 +209,12 @@ const styles = StyleSheet.create({
   },
   avtName:{
     padding:5
+  },
+  photoContainer:{
+    width:width/4
+  },
+  photo:{
+    width:100,
+    height:100
   }
 });
