@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TextInput, Image,Button, Alert} from 'react-native';
 import { ScrollView, FlatList } from 'react-native-gesture-handler';
 
+import axios from 'axios';
+
 export default class VisualForm extends Component {
 	static navigationOptions = {
     title: 'Visual Form',
@@ -108,6 +110,19 @@ export default class VisualForm extends Component {
     visual[key] = value;
     this.setState({visual});
   }
+  upsert() {
+    const visual = this.state.visual;
+    axios({
+      method: 'post',
+      headers:{
+        'Content-Type':'application/x-www-form-urlencoded'
+      },
+      url: 'https://what-i-watched.herokuapp.com/api/visual/submit',
+      data: {a:1,b:2}
+    }).then(res => {
+      console.log(res);
+    });
+  }
   render() {
     let {visual,view,searchs,q,focusField} = this.state;
     delete visual.countries;
@@ -138,8 +153,8 @@ export default class VisualForm extends Component {
     );
     let pageView = (
       <ScrollView style={styles.pageContainer} showsVerticalScrollIndicator={false} >
+        <Button style={styles.upsertBtn} title="Add/Update" onPress={()=>this.upsert()}/>
         {forms}
-        <Button title="Add/Update" onPress={()=>console.log('test')}></Button>
       </ScrollView>
     );
     if (view == 'search') {
@@ -170,9 +185,10 @@ export default class VisualForm extends Component {
 
 const styles = StyleSheet.create({
   pageContainer: {
-    height: '100%',
+    position:'relative',
+    // height: '100%',
     margin:10,
-    paddingBottom:100
+    paddingBottom:400
   },
   formField:{
     marginBottom:10
@@ -190,5 +206,10 @@ const styles = StyleSheet.create({
   focusStyle:{
     borderBottomColor:'green',
     borderBottomWidth:2
+  },
+  upsertBtn:{
+    position:'absolute',
+    bottom:10,
+    right:0
   }
 });
