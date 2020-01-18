@@ -3,6 +3,7 @@ import {Platform, StyleSheet, Text, View, TextInput, Image,Button, Alert} from '
 import { ScrollView, FlatList } from 'react-native-gesture-handler';
 
 import axios from 'axios';
+import qs from 'qs'
 
 export default class VisualForm extends Component {
 	static navigationOptions = {
@@ -115,18 +116,19 @@ export default class VisualForm extends Component {
     axios({
       method: 'post',
       headers:{
+        'accept': 'application/json',
         'Content-Type':'application/x-www-form-urlencoded'
       },
       url: 'https://what-i-watched.herokuapp.com/api/visual/submit',
-      data: {a:1,b:2}
+      data: qs.stringify(visual)//for django request post issue
     }).then(res => {
-      console.log(res);
+      if (res.status == 200) {
+        this.props.navigation.goBack(null);
+      }
     });
   }
   render() {
     let {visual,view,searchs,q,focusField} = this.state;
-    delete visual.countries;
-    delete visual.languages;
     const fields = Object.keys(visual);
     
     let forms = fields.map((field)=>{
