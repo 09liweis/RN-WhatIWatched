@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TextInput, Image,Button, Alert} from 'react-native';
 import { ScrollView, FlatList } from 'react-native-gesture-handler';
+import {API_DETAIL} from '../utils/constants';
 
 import axios from 'axios';
 import qs from 'qs'
@@ -42,7 +43,7 @@ export default class VisualForm extends Component {
     this.updateInput = this.updateInput.bind(this);
   }
   getVisualDetail(id) {
-    fetch('https://what-i-watched.herokuapp.com/api/visual/' + id)
+    fetch(API_DETAIL + id)
 		.then(res => res.json())
 		.then((res) => {
       const douban_id = res.result.douban_id;
