@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, TextInput, Image,Button, Alert} from 'react-native';
+import {Platform, StyleSheet, Text, View, TextInput, Image,Button, TouchableOpacity,Dimensions} from 'react-native';
 import { ScrollView, FlatList } from 'react-native-gesture-handler';
-import {API_DETAIL} from '../utils/constants';
+import {API_DETAIL,API_GET_IMDB_ID} from '../utils/constants';
+const {width} = Dimensions.get('window');
 
 import axios from 'axios';
 import qs from 'qs'
@@ -47,6 +48,7 @@ export default class VisualForm extends Component {
 		.then(res => res.json())
 		.then((res) => {
       const douban_id = res.result.douban_id;
+      this.getIMDB(douban_id);
       this.setState({visual:res.result},()=>{
         this.getDoubanDetail(douban_id);
       });
@@ -54,6 +56,12 @@ export default class VisualForm extends Component {
 		.catch((err) => {
 			console.error(err);
 		})
+  }
+  getIMDB(id) {
+    console.log(API_GET_IMDB_ID);
+    fetch(API_GET_IMDB_ID+id).then(res=>res.json()).then((res)=>{
+      console.log(res);
+    });
   }
   getSearch(q) {
     fetch('https://movie.douban.com/j/subject_suggest?q='+q)
@@ -84,6 +92,7 @@ export default class VisualForm extends Component {
       visual.languages = res.languages;
       visual.countries = res.countries;
       visual.release_date = res.pubdates[0];
+      console.log(res.pubdates);
       if (res.durations.length > 0) {
         visual.duration = res.durations[0];
       }
@@ -161,6 +170,7 @@ export default class VisualForm extends Component {
       </ScrollView>
     );
     if (view == 'search') {
+      console.log(searchs);
       pageView = (
         <View>
           <TextInput onChangeText={(val)=>this.setState({q:val})}/>
@@ -169,7 +179,16 @@ export default class VisualForm extends Component {
             data={searchs}
             keyExtractor={item => item.id}
             renderItem={({item}) => 
-              <Button title={item.title} onPress={()=>this.getDoubanDetail(item.id)}></Button>
+              <TouchableOpacity onPress={()=>this.getDoubanDetail(item.id)}>
+                <View style={styles.searchResult}>
+                  <Image style={styles.searchResultImg} source={{uri:item.img}}/>
+                  <View style={styles.searchResultDetail}>
+                    <Text>{item.title}</Text>
+                    <Text>{item.year}</Text>
+                    <Text>{item.sub_title}</Text>
+                  </View>
+                </View>
+              </TouchableOpacity>
             }
           />
         </View>
@@ -210,9 +229,15 @@ const styles = StyleSheet.create({
     borderBottomColor:'green',
     borderBottomWidth:2
   },
-  upsertBtn:{
-    position:'absolute',
-    bottom:10,
-    right:0
+  searchResult:{
+    flexDirection:'row',
+    padding:15
+  },
+  searchResultImg:{
+    width:width/5,
+    height:width/5*400/270
+  },
+  searchResultDetail:{
+    padding:15
   }
 });
