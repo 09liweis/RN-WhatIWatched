@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">WhatIWatched</string>
+  <string name="app_name">What I Watched</string>
+  <string name="appwidget_text">EXAMPLE</string>
+<!--  <string name="add_widget">Add widget</string>-->
 </resources>

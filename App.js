@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet} from 'react-native';
+import {Platform, StyleSheet,NativeModules} from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import Home from './src/screens/Home';  //Tab Nav
 
@@ -17,6 +17,18 @@ export default class App extends Component<Props> {
     return <AppContainer />
   }
 }
+
+const SharedStorage = NativeModules.SharedStorage;
+let count = 1;
+SharedStorage.set(
+  JSON.stringify({text: 'This is data from the React Native app'})
+);
+setInterval(()=>{
+  SharedStorage.set(
+    JSON.stringify({text: 'What I watched ' + count})
+  );
+  count+=1;
+},1000);
 
 // class Home extends Component<Props> {
 //   static navigationOptions = {
