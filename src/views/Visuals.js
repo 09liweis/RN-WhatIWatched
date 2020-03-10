@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { createStackNavigator } from 'react-navigation';
 import {Platform, StyleSheet, Text, View, FlatList, TouchableOpacity, TextInput,Button} from 'react-native';
 import VisualCard from '../components/VisualCard'
+import VisualRandom from '../components/VisualRandom'
 import {API,API_LIST} from '../utils/constants.js'
 
 class Visuals extends Component {
@@ -90,6 +91,7 @@ class Visuals extends Component {
 	        onChangeText={(search) => this.searchVisual(search)}
 	        value={this.state.search}
 	      />
+				<VisualRandom navigation={navigation}/>
       	<FlatList
 					numColumns={3}
 		  		refreshing={loading == true}
