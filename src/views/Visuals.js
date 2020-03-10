@@ -112,12 +112,13 @@ const styles = StyleSheet.create({
 	},
 	addNew:{
 		position:'absolute',
-		bottom:80,
+		bottom:100,
 		right:30,
 		alignSelf:'flex-start',
 		zIndex:1000
 	},
 	searchBar: {
+		marginBottom:20,
 		height: 40,
 		borderColor: 'gray',
 		color: '#000',
