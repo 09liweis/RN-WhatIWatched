@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
+import {Platform, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {API_RANDOM} from '../utils/constants.js'
 import VisualBasic from './VisualBasic'
 
