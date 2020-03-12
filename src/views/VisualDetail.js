@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text,ScrollView,View, Image, TouchableOpacity, Button,Linking,Dimensions} from 'react-native';
+import {Platform, StyleSheet, Text,ScrollView,View, Image, TouchableOpacity, Button,Dimensions} from 'react-native';
 import {API_DETAIL,API_INCREASE_EPISODE,API_DOUBAN_DETAIL,API_DOUBAN_DETAIL_PHOTO} from '../utils/constants.js'
 import { FlatList } from 'react-native-gesture-handler';
 import VisualBasic from '../components/VisualBasic.js';
-const {width,height} = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 export default class VisualDetail extends Component {
 	static navigationOptions = ({navigation}) => {
@@ -50,7 +50,6 @@ export default class VisualDetail extends Component {
   getPhotos(id) {
     const url = API_DOUBAN_DETAIL_PHOTO.replace('{id}',id);
     fetch(url).then(res=>res.json()).then((res)=>{
-      console.log(res);
       this.setState({photos:res.photos});
     })
   }
