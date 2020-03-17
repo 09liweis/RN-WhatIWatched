@@ -62,6 +62,7 @@ export default class Douban extends Component {
 }
 const styles = StyleSheet.create({
 	container:{
+		backgroundColor:'#f1f1f1'
 	},
 	loading:{
 		height,
