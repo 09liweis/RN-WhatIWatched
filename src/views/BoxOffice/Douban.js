@@ -35,13 +35,16 @@ export default class Douban extends Component {
 				<React.Fragment>
 					<Text style={styles.title}>{douban.title} {douban.date}</Text>
 					<FlatList
+						showsVerticalScrollIndicator={false}
 						data={douban.subjects}
 						keyExtractor={item => item.subject.id.toString()}
 						renderItem={({item}) =>
 							<View style={styles.boxoffice}>
-								<Image style={styles.boxofficeImg} source={{uri:item.subject.images.small}}/>
+								<View style={styles.imgWrapper}>
+									<Image style={styles.boxofficeImg} source={{uri:item.subject.images.small}}/>
+								</View>
 								<View style={styles.boxofficeInfo}>
-									<Text>{item.subject.title}</Text>
+									<Text style={styles.itemTitle}>{item.subject.title}</Text>
 									<Text>{item.subject.original_title}</Text>
 									<Text>{item.subject.durations.join(',')}</Text>
 									<Text>{item.subject.genres.join(',')}</Text>
@@ -62,7 +65,9 @@ export default class Douban extends Component {
 }
 const styles = StyleSheet.create({
 	container:{
-		backgroundColor:'#f1f1f1'
+		backgroundColor:'#f1f1f1',
+		paddingLeft:20,
+		paddingRight:20
 	},
 	loading:{
 		height,
@@ -74,15 +79,29 @@ const styles = StyleSheet.create({
 		fontSize:20
 	},
   boxoffice:{
-		marginBottom:5,
-		padding:10,
+		marginTop:40,
+		padding:20,
+		borderRadius:20,
 		flexDirection:'row',
+		backgroundColor:'#fafafa'
+	},
+	imgWrapper:{
+		width:100,
+		height:100,
+		position:'relative'
 	},
 	boxofficeImg:{
+		position:'absolute',
+		top:-40,
 		width:100,
-		height:150
+		height:150,
+		borderRadius:20
 	},
 	boxofficeInfo:{
-		padding:10
+		paddingLeft:20
+	},
+	itemTitle:{
+		fontSize:20,
+		fontWeight:'bold'
 	}
 });
