@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import {Platform, StyleSheet, Text, View, FlatList, TouchableOpacity, TextInput,Button} from 'react-native';
 import Douban from './Douban';
 import Maoyan from './Maoyan';
 
