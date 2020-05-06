@@ -6,31 +6,31 @@ import Maoyan from './Maoyan';
 
 const BoxOffice = createBottomTabNavigator({
   Douban: {
-		screen: Douban,
-		navigationOptions: {
-			title: "豆瓣",
-			tabBarIcon: ({ tintColor }) => (
-				<Icon
-					name="film"
-					size={17}
-					color={tintColor} />
-			)
-		}
+    screen: Douban,
+    navigationOptions: {
+      title: "豆瓣",
+      tabBarIcon: ({ tintColor }) => (
+        <Icon
+          name="film"
+          size={17}
+          color={tintColor} />
+      )
+    }
   },
-	Maoyan: {
-		screen: Maoyan,
-		navigationOptions: {
-			tabBarLabel: "猫眼",
-			tabBarIcon: ({ tintColor }) => (
-				<Icon
-					name="memory"
-					size={17}
-					color={tintColor} />
-			)
-		}
-	}
+  Maoyan: {
+    screen: Maoyan,
+    navigationOptions: {
+      tabBarLabel: "猫眼",
+      tabBarIcon: ({ tintColor }) => (
+        <Icon
+          name="memory"
+          size={17}
+          color={tintColor} />
+      )
+    }
+  }
 },{
-	tabBarPosition:'top'
+  tabBarPosition:'top'
 });
 
 export default createStackNavigator({ BoxOffice }, { headerMode: "none" });
