@@ -1,5 +1,6 @@
 const API_DOUBAN_KEY = '?apikey=0df993c66c0c636e29ecbb5344252a4a';
 const API = 'https://what-i-watched.herokuapp.com/api/';
+const API_STATS = 'stats'
 const API_RANDOM = API + 'random_visual/';
 const API_LIST = API + 'visuals/';
 const API_DETAIL = API + 'visual/';
@@ -14,6 +15,7 @@ const API_MAOYAN = 'https://piaofang.maoyan.com/second-box';
 const API_MAOYAN_DETAIL = 'http://m.maoyan.com/ajax/detailmovie?movieId={id}'
 export {
   API,
+  API_STATS,
   API_LIST,
   API_RANDOM,
   API_DETAIL,
