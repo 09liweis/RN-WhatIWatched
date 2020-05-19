@@ -1,13 +1,20 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import {Platform, StyleSheet, Text,ScrollView,View, Image, TouchableOpacity, Button,Dimensions} from 'react-native';
+import VisualRandom from '../components/VisualRandom'
 
-const Dashboard = (props) => {
-  // const [stats, setStats] = useState(0);
-  return (
-    <View>
-      <Text style={styles.viewTitle}>Dashboard</Text>
-    </View>
-  )
+export default class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    const {navigation} = this.props;
+    return (
+      <View>
+        <Text style={styles.viewTitle}>Dashboard</Text>
+        <VisualRandom navigation={navigation}/>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -16,5 +23,3 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   }
 });
-
-export default Dashboard;
