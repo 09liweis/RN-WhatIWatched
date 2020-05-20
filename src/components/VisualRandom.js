@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {API_RANDOM} from '../utils/constants.js'
+import {get} from '../utils/services.js'
 import VisualBasic from './VisualBasic'
 
 export default class VisualRandom extends Component {
@@ -11,14 +12,9 @@ export default class VisualRandom extends Component {
     };
   }
   componentDidMount() {
-    fetch(API_RANDOM)
-		.then(res => res.json())
-		.then((res) => {
-			this.setState({visual:res.result});
-		})
-		.catch((err) => {
-			console.error(err);
-		})
+    get(API_RANDOM, (err, res) => {
+      this.setState({visual:res.result});
+    });
   }
   render() {
     const {navigation} = this.props;
