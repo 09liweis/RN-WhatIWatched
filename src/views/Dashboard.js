@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Platform, StyleSheet, Text,ScrollView,View, Image, TouchableOpacity, Button,Dimensions} from 'react-native';
 import VisualRandom from '../components/VisualRandom'
 import { API_STATS } from '../utils/constants.js'
+import { get } from '../utils/services.js';
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -11,17 +12,12 @@ export default class Dashboard extends Component {
     }
   }
   componentDidMount() {
-    fetch(API_STATS)
-    .then(res => res.json())
-    .then((res) => {
+    get(API_STATS, (err, res) => {
       this.setState({
         stats: res,
         loading:false
       })
-    })
-    .catch((err) => {
-      console.error(err);
-    })
+    });
   }
 
   render() {
