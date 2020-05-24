@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TouchableOpacity, ActivityIndicator} from 'react-native';
 import {API_RANDOM} from '../utils/constants.js'
-import {get} from '../utils/services.js'
+import {get, updateVisual} from '../utils/services.js'
 import VisualBasic from './VisualBasic'
 
 export default class VisualRandom extends Component {
@@ -22,12 +22,9 @@ export default class VisualRandom extends Component {
     this.setState({loading:true})
     get(API_RANDOM, (err, res) => {
       this.setState({visual:res.result,loading:false}, () => {
-        this.updateVisual(this.state.visual);
+        updateVisual(this.state.visual);
       });
     });
-  }
-  updateVisual(visual) {
-    
   }
   componentWillUnmount() {
     this.timer.clearInterval();

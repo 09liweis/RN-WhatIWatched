@@ -8,3 +8,6 @@ export function get(url, cb) {
     return cb(err, null);
   })
 }
+export function updateVisual(visual, cb) {
+  
+}
