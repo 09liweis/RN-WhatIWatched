@@ -21,8 +21,13 @@ export default class VisualRandom extends Component {
   getRandomVisual() {
     this.setState({loading:true})
     get(API_RANDOM, (err, res) => {
-      this.setState({visual:res.result,loading:false});
+      this.setState({visual:res.result,loading:false}, () => {
+        this.updateVisual(this.state.visual);
+      });
     });
+  }
+  updateVisual(visual) {
+    
   }
   componentWillUnmount() {
     this.timer.clearInterval();
