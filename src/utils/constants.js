@@ -14,6 +14,7 @@ const API_DOUBAN_UPCOMING = 'https://api.douban.com/v2/movie/coming_soon?apikey=
 const API_MAOYAN = 'https://piaofang.maoyan.com/second-box';
 const API_MAOYAN_DETAIL = 'http://m.maoyan.com/ajax/detailmovie?movieId={id}'
 const API_IMDB_RATING = 'https://samliweisen.herokuapp.com/api/visuals/get_imdb_rating?imdb_id='
+const API_UPSERT = 'https://what-i-watched.herokuapp.com/api/visual/submit';
 
 function getDoubanDetailAPI(id) {
   return API_DOUBAN_DETAIL.replace('{id}', id);
@@ -39,5 +40,6 @@ export {
   API_DOUBAN_UPCOMING,
   API_MAOYAN,
   API_MAOYAN_DETAIL,
-  API_GET_IMDB_ID
+  API_GET_IMDB_ID,
+  API_UPSERT
 }
