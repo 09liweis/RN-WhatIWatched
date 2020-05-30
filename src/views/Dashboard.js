@@ -33,6 +33,7 @@ export default class Dashboard extends Component {
         </View>
         <View>More data is coming</View>
         <View>Year Data</View>
+        <View>Language Data</View>
       </View>
     );
   }
