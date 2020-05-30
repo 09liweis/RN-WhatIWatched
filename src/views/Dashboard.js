@@ -32,6 +32,7 @@ export default class Dashboard extends Component {
           <Text style={[styles.statsBlock]}>TV: {stats.tv}</Text>
         </View>
         <View>More data is coming</View>
+        <View>Year Data</View>
       </View>
     );
   }
