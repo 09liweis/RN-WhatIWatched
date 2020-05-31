@@ -15,7 +15,7 @@ export default class Dashboard extends Component {
     get(API_STATS, (err, res) => {
       this.setState({
         stats: res,
-        loading:false
+        loading:false,
       })
     });
   }
