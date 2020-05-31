@@ -3,7 +3,7 @@ import { createBottomTabNavigator, createStackNavigator } from 'react-navigation
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Dashboard from '../views/Dashboard';
 import Visuals from '../views/Visuals';
-import BoxOffice from '../views/BoxOffice/index';
+import BoxOffice from '../views/BoxOffice';
 
 const navigationOptions = (title, iconName) => {
   return {
