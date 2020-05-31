@@ -9,7 +9,8 @@ export default class VisualRandom extends Component {
     super(props);
     this.state = {
       visual:{},
-      loading: false
+      loading: false,
+      countdown: 0
     };
   }
   componentDidMount() {
@@ -19,7 +20,15 @@ export default class VisualRandom extends Component {
     },15000);
   }
   getRandomVisual() {
-    this.setState({loading:true})
+    if (this.countDown) {
+      clearInterval(this.countDown);
+      delete this.countDown;
+    }
+    this.setState({loading:true,countdown:15}, () => {
+      this.countDown = setInterval(() => {
+        this.setState({countdown:this.state.countdown -= 1})
+      },1000);
+    })
     get(API_RANDOM, (err, res) => {
       this.setState({visual:res.result,loading:false}, () => {
         updateVisual(this.state.visual, (err, ret) => {
@@ -34,14 +43,14 @@ export default class VisualRandom extends Component {
   }
   render() {
     const {navigation} = this.props;
-    const {visual, loading} = this.state;
+    const {visual, loading, countdown} = this.state;
     let visualView;
     if (!loading) {
       visualView = (
         <TouchableOpacity onPress={() => navigation.navigate('VisualDetail',{id:visual.id,title:visual.title})}>
           <VisualBasic visual={visual} />
           <View>
-            <Text>Loading</Text>
+            <Text>{countdown}</Text>
           </View>
         </TouchableOpacity>
       );
