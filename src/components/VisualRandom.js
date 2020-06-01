@@ -4,6 +4,13 @@ import {API_RANDOM} from '../utils/constants.js'
 import {get, updateVisual} from '../utils/services.js'
 import VisualBasic from './VisualBasic'
 
+const styles = StyleSheet.create({
+  countDown: {
+    backgroundColor: 'red',
+    height: 2
+  }
+});
+
 export default class VisualRandom extends Component {
   constructor(props) {
     super(props);
@@ -44,12 +51,14 @@ export default class VisualRandom extends Component {
   render() {
     const {navigation} = this.props;
     const {visual, loading, countdown} = this.state;
+    const countDownStyle = styles.countDown;
+    countDownStyle.width = countdown;
     let visualView;
     if (!loading) {
       visualView = (
         <TouchableOpacity onPress={() => navigation.navigate('VisualDetail',{id:visual.id,title:visual.title})}>
           <VisualBasic visual={visual} />
-          <View>
+          <View style={countDownStyle}>
             <Text>{countdown}</Text>
           </View>
         </TouchableOpacity>
@@ -62,6 +71,3 @@ export default class VisualRandom extends Component {
     );
   }
 }
-const styles = StyleSheet.create({
-
-});
