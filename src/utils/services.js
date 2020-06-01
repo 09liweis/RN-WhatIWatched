@@ -56,6 +56,10 @@ export function updateVisual(visual, cb) {
           return cb(err, ret);
         });
       });
+    } else {
+      post(API_UPSERT, visual, (err, ret) => {
+        return cb(err, ret);
+      });
     }
   });
 };
