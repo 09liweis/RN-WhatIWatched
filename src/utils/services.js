@@ -47,6 +47,9 @@ export function updateVisual(visual, cb) {
     if (release_date = d.pubdate) {
       visual.release_date = release_date;
     }
+    if (episodes = res.episodes_count) {
+      visual.episodes = episodes;
+    }
     if (imdb_id = visual.imdb_id) {
       get(getImdbRatingAPI(imdb_id), (err, imdb) => {
         if (imdb_rating = imdb.imdb_rating) {
