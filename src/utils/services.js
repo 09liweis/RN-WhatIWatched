@@ -44,6 +44,9 @@ export function updateVisual(visual, cb) {
     if (rating = d.rating.average) {
       visual.douban_rating = rating;
     }
+    if (website = d.website) {
+      visual.website = website;
+    }
     if (release_date = d.pubdate) {
       visual.release_date = release_date;
     }
