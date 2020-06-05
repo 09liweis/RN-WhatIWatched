@@ -47,7 +47,7 @@ export function updateVisual(visual, cb) {
     if (release_date = d.pubdate) {
       visual.release_date = release_date;
     }
-    if (episodes = res.episodes_count) {
+    if (episodes = d.episodes_count) {
       visual.episodes = episodes;
     }
     if (imdb_id = visual.imdb_id) {
