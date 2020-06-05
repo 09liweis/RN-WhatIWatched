@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TextInput, Image,Button, TouchableOpacity,Dimensions} from 'react-native';
 import { ScrollView, FlatList } from 'react-native-gesture-handler';
-import {API_DETAIL,API_GET_IMDB_ID} from '../utils/constants';
+import {API_DETAIL,API_GET_IMDB_ID,API_UPSERT} from '../utils/constants';
 const {width} = Dimensions.get('window');
 
 import axios from 'axios';
@@ -129,7 +129,7 @@ export default class VisualForm extends Component {
         'accept': 'application/json',
         'Content-Type':'application/x-www-form-urlencoded'
       },
-      url: 'https://what-i-watched.herokuapp.com/api/visual/submit',
+      url: API_UPSERT,
       data: qs.stringify(visual)//for django request post issue
     }).then(res => {
       if (res.status == 200) {
