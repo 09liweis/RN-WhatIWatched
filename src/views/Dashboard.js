@@ -34,6 +34,12 @@ export default class Dashboard extends Component {
         <View><Text>More data is coming</Text></View>
         <View><Text>Year Data</Text></View>
         <View><Text>Language Data</Text></View>
+        <TouchableOpacity>
+          <Button
+            title='Add'
+            onPress={() => navigation.navigate('VisualForm')}
+          />
+        </TouchableOpacity>
       </View>
     );
   }
