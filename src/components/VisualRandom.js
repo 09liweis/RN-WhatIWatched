@@ -39,7 +39,8 @@ export default class VisualRandom extends Component {
     })
     get(API_RANDOM, (err, res) => {
       this.setState({visual:res.result,loading:false}, () => {
-        updateVisual(this.state.visual, (err, ret) => {
+        const {visual} = this.state;
+        updateVisual(visual, (err, ret) => {
           
         });
       });
