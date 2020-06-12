@@ -41,6 +41,9 @@ export function post(url, data, cb) {
 }
 export function updateVisual(visual, cb) {
   get(getDoubanDetailAPI(visual.douban_id), (err, d) => {
+    if (err) {
+      return cb(err,null);
+    }
     if (rating = d.rating.average) {
       visual.douban_rating = rating;
     }
