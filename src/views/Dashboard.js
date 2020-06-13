@@ -34,11 +34,8 @@ export default class Dashboard extends Component {
         <View><Text>More data is coming</Text></View>
         <View><Text>Year Data</Text></View>
         <View><Text>Language Data</Text></View>
-        <TouchableOpacity>
-          <Button
-            title='Add New'
-            onPress={() => navigation.navigate('VisualForm')}
-          />
+        <TouchableOpacity onPress={() => navigation.navigate('VisualForm')}>
+          <Text style={styles.addNew}>Add New</Text>
         </TouchableOpacity>
       </View>
     );
@@ -48,6 +45,14 @@ export default class Dashboard extends Component {
 const styles = StyleSheet.create({
   pageContainer: {
     padding: 10
+  },
+  addNew: {
+    marginTop: 10,
+    backgroundColor: '#5a62b3',
+    padding: 10,
+    color: '#fff',
+    borderRadius: 5,
+    textAlign: 'center'
   },
   viewTitle: {
     fontSize: 30,
@@ -60,10 +65,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   statsBlock: {
+    borderRadius: 5,
     color: '#fff',
     fontSize: 30,
     padding: 20,
     width: '48%',
-    backgroundColor: '#ccc'
+    backgroundColor: '#e7bdd4'
   }
 });
