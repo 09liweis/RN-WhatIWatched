@@ -32,7 +32,7 @@ export default class VisualRandom extends Component {
       delete this.countDown;
     }
     this.setState({loading:true,countdown:15}, () => {
-      const {countdown} = this.state;
+      let {countdown} = this.state;
       this.countDown = setInterval(() => {
         this.setState({countdown:countdown -= 1})
       },1000);
