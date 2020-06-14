@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   statsBlock: {
+    textAlign: 'center',
     borderRadius: 5,
     color: '#fff',
     fontSize: 30,
