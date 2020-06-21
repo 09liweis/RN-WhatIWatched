@@ -59,16 +59,11 @@ export default class VisualForm extends Component {
     })
   }
   getSearch(q) {
-    fetch('https://movie.douban.com/j/subject_suggest?q='+q)
-		.then(res => res.json())
-		.then((res) => {
-			this.setState({
-				searchs: res
-			})
-		})
-		.catch((err) => {
-			console.error(err);
-		})
+    get('https://movie.douban.com/j/subject_suggest?q='+q,(err,res) => {
+      this.setState({
+        searchs: res
+      })
+    });
   }
   getDoubanDetail(id) {
     fetch('https://api.douban.com/v2/movie/subject/'+id+'?apikey=0df993c66c0c636e29ecbb5344252a4a')
@@ -87,7 +82,6 @@ export default class VisualForm extends Component {
       visual.languages = res.languages;
       visual.countries = res.countries;
       visual.release_date = res.pubdates[0];
-      console.log(res.pubdates);
       if (res.durations.length > 0) {
         visual.duration = res.durations[0];
       }
