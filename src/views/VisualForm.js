@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TextInput, Image,Button, TouchableOpacity,Dimensions} from 'react-native';
 import { ScrollView, FlatList } from 'react-native-gesture-handler';
 import {API_DETAIL,API_GET_IMDB_ID,API_UPSERT} from '../utils/constants';
-import {post} from '../utils/services';
+import {post,get} from '../utils/services';
 const {width} = Dimensions.get('window');
 
 import axios from 'axios';
@@ -45,18 +45,13 @@ export default class VisualForm extends Component {
     this.updateInput = this.updateInput.bind(this);
   }
   getVisualDetail(id) {
-    fetch(API_DETAIL + id)
-		.then(res => res.json())
-		.then((res) => {
+    get(API_DETAIL+id,(err, res)=> {
       const douban_id = res.result.douban_id;
       this.getIMDB(douban_id);
       this.setState({visual:res.result},()=>{
         this.getDoubanDetail(douban_id);
       });
-		})
-		.catch((err) => {
-			console.error(err);
-		})
+    })
   }
   getIMDB(id) {
     console.log(API_GET_IMDB_ID);
