@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TextInput, Image,Button, TouchableOpacity,Dimensions} from 'react-native';
 import { ScrollView, FlatList } from 'react-native-gesture-handler';
 import {API_DETAIL,API_GET_IMDB_ID,API_UPSERT} from '../utils/constants';
+import {post} from '../utils/services';
 const {width} = Dimensions.get('window');
 
 import axios from 'axios';
@@ -123,16 +124,8 @@ export default class VisualForm extends Component {
   }
   upsert() {
     const visual = this.state.visual;
-    axios({
-      method: 'post',
-      headers:{
-        'accept': 'application/json',
-        'Content-Type':'application/x-www-form-urlencoded'
-      },
-      url: API_UPSERT,
-      data: qs.stringify(visual)//for django request post issue
-    }).then(res => {
-      if (res.status == 200) {
+    post(API_UPSERT, visual, (err, ret) => {
+      if (ret.status == 200) {
         this.props.navigation.goBack(null);
       }
     });
