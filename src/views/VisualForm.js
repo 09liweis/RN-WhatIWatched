@@ -66,9 +66,7 @@ export default class VisualForm extends Component {
     });
   }
   getDoubanDetail(id) {
-    fetch('https://api.douban.com/v2/movie/subject/'+id+'?apikey=0df993c66c0c636e29ecbb5344252a4a')
-		.then(res => res.json())
-		.then((res) => {
+    get('https://api.douban.com/v2/movie/subject/'+id+'?apikey=0df993c66c0c636e29ecbb5344252a4a',(err,res)=>{
       let visual = this.state.visual;
       visual.douban_id = res.id;
       visual.douban_rating = res.rating.average;
@@ -90,10 +88,7 @@ export default class VisualForm extends Component {
         view:'form',
         searchs:[]
 			})
-		})
-		.catch((err) => {
-			console.error(err);
-		})
+    });
   }
 	componentDidMount() {
     const {navigation} = this.props;
