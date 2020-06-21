@@ -54,10 +54,9 @@ export default class VisualForm extends Component {
     })
   }
   getIMDB(id) {
-    console.log(API_GET_IMDB_ID);
-    fetch(API_GET_IMDB_ID+id).then(res=>res.json()).then((res)=>{
+    get(API_GET_IMDB_ID+id,(err,res)=> {
       console.log(res);
-    });
+    })
   }
   getSearch(q) {
     fetch('https://movie.douban.com/j/subject_suggest?q='+q)
