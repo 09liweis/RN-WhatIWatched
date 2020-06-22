@@ -3,6 +3,7 @@ import {Platform, StyleSheet, Text,ScrollView,View, Image, TouchableOpacity, But
 import {API_DETAIL,API_INCREASE_EPISODE,API_DOUBAN_DETAIL,API_DOUBAN_DETAIL_PHOTO} from '../utils/constants.js'
 import { FlatList } from 'react-native-gesture-handler';
 import VisualBasic from '../components/VisualBasic.js';
+import {get} from '../utils/services';
 const {width} = Dimensions.get('window');
 
 export default class VisualDetail extends Component {
@@ -26,20 +27,20 @@ export default class VisualDetail extends Component {
     this.edit = this.edit.bind(this);
 	}
 	componentDidMount() {
-		const {visual} = this.state;
-    fetch(API_DETAIL+visual.id)
-    .then(res => res.json())
-    .then((res) => {
+    const {visual} = this.state;
+    get(API_DETAIL+visual.id,(err,res)=> {
       var doubanId = res.result.douban_id;
       this.getDoubanDetail(doubanId);
       this.getPhotos(doubanId)
       this.setState({
         visual: res.result
       })
-    })
-    .catch((err) => {
-      console.error(err);
     });
+  }
+  componentWillUnmount() {
+    this.setState = (state,callback)=>{
+      return;
+    };
   }
   getDoubanDetail(id) {
     const url = API_DOUBAN_DETAIL.replace('{id}',id);
