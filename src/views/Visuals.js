@@ -58,16 +58,11 @@ class Visuals extends Component {
     } else {
       url = API + 'search?keyword=' + search;
     }
-    fetch(url)
-    .then(res => res.json())
-    .then((res) => {
+    get(url, (err, res)=> {
       this.setState({
         visuals: res.results
       })
-    })
-    .catch((err) => {
-      console.error(err);
-    })
+    });
   }
   render() {
     const {navigation} = this.props;
