@@ -50,9 +50,9 @@ export default class VisualDetail extends Component {
   }
   getPhotos(id) {
     const url = API_DOUBAN_DETAIL_PHOTO.replace('{id}',id);
-    fetch(url).then(res=>res.json()).then((res)=>{
+    get(url, (err, res)=> {
       this.setState({photos:res.photos});
-    })
+    });
   }
   increaseEpisode() {
     const {visual} = this.state;
