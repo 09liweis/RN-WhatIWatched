@@ -56,17 +56,12 @@ export default class VisualDetail extends Component {
   }
   increaseEpisode() {
     const {visual} = this.state;
-    fetch(API_INCREASE_EPISODE+visual.id)
-    .then(res => res.json())
-    .then((res) => {
+    get(API_INCREASE_EPISODE+visual.id,(err, res)=>{
       visual.current_episode = res.current_episode
       this.setState({
         visual: visual
-      })
-    })
-    .catch((err) => {
-      console.error(err);
-    })
+      });
+    });
   }
   edit() {
     const {visual} = this.state;
