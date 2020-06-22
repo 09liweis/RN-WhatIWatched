@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, FlatList,Image,ActivityIndicator,Dimensions} from 'react-native';
 import {API_DOUBAN_USBO} from '../../utils/constants.js'
+import {get} from '../../utils/services';
 const {width,height} = Dimensions.get('window');
 export default class Douban extends Component {
   constructor(props) {
@@ -16,14 +17,9 @@ export default class Douban extends Component {
   }
   getDoubanBO(){
     this.setState({loading:true});
-    fetch(API_DOUBAN_USBO)
-    .then(res => res.json())
-    .then((res) => {
+    get(API_DOUBAN_USBO, (err, res)=> {
       this.setState({douban:res,loading:false});
-    })
-    .catch((err) => {
-      console.error(err);
-    })
+    });
   }
   render() {
     const {douban,loading} = this.state;
