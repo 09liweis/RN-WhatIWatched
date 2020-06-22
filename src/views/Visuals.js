@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { createStackNavigator } from 'react-navigation';
 import {Platform, StyleSheet, Text, View, FlatList, TouchableOpacity, TextInput,Button} from 'react-native';
 import VisualCard from '../components/VisualCard'
-
+import {get} from '../utils/services';
 import {API,API_LIST} from '../utils/constants.js'
 
 class Visuals extends Component {
@@ -30,9 +30,7 @@ class Visuals extends Component {
     const url = api+this.page;
     let results = [];
     this.setState({loading:true});
-    fetch(url)
-    .then(res => res.json())
-    .then((res) => {
+    get(url,(err,res) => {
       if (this.page == 1) {
         results = res.results;
       } else {
@@ -42,10 +40,7 @@ class Visuals extends Component {
         visuals:results,
         loading:false
       })
-    })
-    .catch((err) => {
-      console.error(err);
-    })
+    });
   }
   pullToRefresh() {
     this.page = 1;
