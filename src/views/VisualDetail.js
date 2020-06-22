@@ -44,9 +44,9 @@ export default class VisualDetail extends Component {
   }
   getDoubanDetail(id) {
     const url = API_DOUBAN_DETAIL.replace('{id}',id);
-    fetch(url).then(res=>res.json()).then((res)=>{
+    get(url, (err, res)=> {
       this.setState({douban:res});
-    })
+    });
   }
   getPhotos(id) {
     const url = API_DOUBAN_DETAIL_PHOTO.replace('{id}',id);
