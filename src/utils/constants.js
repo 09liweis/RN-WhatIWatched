@@ -13,7 +13,7 @@ const API_DOUBAN_USBO = 'https://api.douban.com/v2/movie/us_box'+API_DOUBAN_KEY;
 const API_DOUBAN_UPCOMING = 'https://api.douban.com/v2/movie/coming_soon?apikey=0b2bdeda43b5688921839c8ecb20399b'
 const API_MAOYAN = 'https://piaofang.maoyan.com/second-box';
 const API_MAOYAN_DETAIL = 'http://m.maoyan.com/ajax/detailmovie?movieId={id}'
-const API_IMDB_RATING = 'https://samliweisen.herokuapp.com/api/visuals/get_imdb_rating?imdb_id='
+const API_IMDB_RATING = API+'visuals/get_imdb_rating?imdb_id='
 const API_UPSERT = 'https://what-i-watched.herokuapp.com/api/visual/submit';
 
 function getDoubanDetailAPI(id) {
