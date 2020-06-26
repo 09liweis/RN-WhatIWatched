@@ -30,36 +30,4 @@ setInterval(()=>{
   count+=1;
 },1000);
 
-// class Home extends Component<Props> {
-//   static navigationOptions = {
-//     title: 'What I Watched!',
-//     headerStyle: {
-//       backgroundColor: '#fff',
-//     },
-//     headerTintColor:'#090f2b'
-//   };
-//   render() {
-//     return (
-//       <View style={styles.container}>
-//         <Visuals navigation={this.props.navigation} />
-//       </View>
-//     );
-//   }
-// }
 const AppContainer = createAppContainer(Home);
-// export default createDrawerNavigator({
-//   Home: {
-//     screen: Home,
-//     navigationOptions: {
-//       drawerLabel: 'Home',
-//       drawerIcon: ({ tintColor }) => <Icon name="cog" size={17} />,
-//     }
-//   },
-//   Visuals: {
-//     screen: Visuals,
-//     navigationOptions: {
-//       drawerLabel: 'Visuals',
-//       drawerIcon: ({ tintColor }) => <Icon name="user-circle" size={17} />,
-//     }
-//   }
-// });
