@@ -7,6 +7,9 @@ const API_DETAIL = API + 'visual/';
 const API_INCREASE_EPISODE = API_DETAIL +'increase_episode?id=';
 const API_SEARCH = API + 'search?keyword=';
 const API_GET_IMDB_ID = API + 'visuals/get_imdb_id?douban_id='
+const API_IMDB_RATING = API+'visuals/get_imdb_rating?imdb_id='
+const API_UPSERT = API+'visual/submit';
+
 const API_DOUBAN = 'https://api.douban.com/v2/movie/';
 const API_DOUBAN_DETAIL = API_DOUBAN+'subject/{id}'+API_DOUBAN_KEY;
 const API_DOUBAN_DETAIL_PHOTO = API_DOUBAN+'subject/{id}/photos'+API_DOUBAN_KEY;
@@ -14,8 +17,6 @@ const API_DOUBAN_USBO = API_DOUBAN+'us_box'+API_DOUBAN_KEY;
 const API_DOUBAN_UPCOMING = API_DOUBAN+'coming_soon?apikey=0b2bdeda43b5688921839c8ecb20399b'
 const API_MAOYAN = 'https://piaofang.maoyan.com/second-box';
 const API_MAOYAN_DETAIL = 'http://m.maoyan.com/ajax/detailmovie?movieId={id}'
-const API_IMDB_RATING = API+'visuals/get_imdb_rating?imdb_id='
-const API_UPSERT = API+'visual/submit';
 
 function getDoubanDetailAPI(id) {
   return API_DOUBAN_DETAIL.replace('{id}', id);
