@@ -76,7 +76,7 @@ class Visuals extends Component {
           value={this.state.search}
         />
         <FlatList
-          numColumns={3}
+          numColumns={1}
           refreshing={loading == true}
           onRefresh={() => this.pullToRefresh()}
           data={visuals}
