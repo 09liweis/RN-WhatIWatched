@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text,Image,TouchableOpacity,Dimensions} from 'react-native';
+import {Platform, StyleSheet, View,Text,Image,TouchableOpacity,Dimensions} from 'react-native';
 
 const {width} = Dimensions.get('window');
 const cardWdith = (width)/3
@@ -14,14 +14,24 @@ export default Visuals = (props) => {
   }
   return (
     <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('VisualDetail',{id:v.id,title:v.title})}>
-      <Image style={styles.VisualImage} source={{uri: v.poster}} />
-      <Text style={[styles.VisualText,styles.progress,progress]}>{v.current_episode}/{v.episodes}</Text>
+      <View style={styles.imgContainer}>
+        <Image style={styles.VisualImage} source={{uri: v.poster}} />
+        <Text style={[styles.VisualText,styles.progress,progress]}>{v.current_episode}/{v.episodes}</Text>
+      </View>
+      <View style={styles.VisualDetail}>
+        <Text style={styles.VisualTitle}>{v.title}</Text>
+      </View>
     </TouchableOpacity>
   );
 }
 const elevation = 5;
 const styles = StyleSheet.create({
   card: {
+    flexDirection: 'row',
+    marginLeft: 15,
+    marginRight: 15,
+    marginTop: 15,
+    padding: 10,
     backgroundColor:'#fff',
     elevation,
     shadowColor: 'black',
@@ -29,12 +39,15 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 0.8 * elevation,
     position:'relative',
-    width: cardWdith,
+    borderRadius: 5
+  },
+  imgContainer: {
+    width: cardWdith
   },
   VisualImage: {
     width: cardWdith,
     height: 230,
-    // borderRadius: 5
+    borderRadius: 5
   },
   VisualDetail: {
     padding: 10
@@ -44,7 +57,7 @@ const styles = StyleSheet.create({
     fontSize: 14
   },
   VisualTitle: {
-    fontSize: 20,
+    fontSize: 24,
     fontFamily:'Roboto',
     fontWeight:'bold'
   },
