@@ -13,6 +13,7 @@ const API_UPSERT = API+'visual/submit';
 const API_DOUBAN = 'https://api.douban.com/v2/movie/';
 const API_DOUBAN_DETAIL = API_DOUBAN+'subject/{id}'+API_DOUBAN_KEY;
 const API_DOUBAN_DETAIL_PHOTO = API_DOUBAN+'subject/{id}/photos'+API_DOUBAN_KEY;
+const API_DOUBAN_DETAIL_REVIEWS = API_DOUBAN+'subject/{id}/reviews'+API_DOUBAN_KEY;
 const API_DOUBAN_USBO = API_DOUBAN+'us_box'+API_DOUBAN_KEY;
 const API_DOUBAN_INTHEATRE = API_DOUBAN+'in_theaters'+API_DOUBAN_KEY;
 const API_DOUBAN_UPCOMING = API_DOUBAN+'coming_soon?apikey=0b2bdeda43b5688921839c8ecb20399b'
@@ -40,6 +41,7 @@ export {
   getDoubanDetailAPI,
   getImdbRatingAPI,
   API_DOUBAN_DETAIL_PHOTO,
+  API_DOUBAN_DETAIL_REVIEWS,
   API_DOUBAN_USBO,
   API_DOUBAN_UPCOMING,
   API_DOUBAN_INTHEATRE,
