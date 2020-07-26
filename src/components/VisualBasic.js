@@ -14,10 +14,12 @@ export default VisualBasic = (props) => {
           <Text style={[styles.douban,styles.ratingLabel]}>豆</Text>
           <Text>{v.douban_rating}</Text>
         </TouchableOpacity>
+        {v.imdb_id ?
         <TouchableOpacity style={styles.ratingRow} onPress={()=>Linking.openURL('https://imdb.com/title/'+v.imdb_id)}>
           <Text style={[styles.imdb,styles.ratingLabel]}>IMDB</Text>
           <Text>{v.imdb_rating}</Text>
         </TouchableOpacity>
+        :null}
         <Text>{v.current_episode}/{v.episodes}</Text>
         <Text>{v.release_date}</Text>
         {v.countries?<Text>国家: {v.countries.join(',')}</Text>:null}
