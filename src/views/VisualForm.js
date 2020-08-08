@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TextInput, Image,Button, TouchableOpacity,Dimensions} from 'react-native';
 import { ScrollView, FlatList } from 'react-native-gesture-handler';
-import {API_DETAIL,API_GET_IMDB_ID,API_UPSERT} from '../utils/constants';
+import {getDoubanDetailAPI,API_DETAIL,API_GET_IMDB_ID,API_UPSERT} from '../utils/constants';
 import {post,get} from '../utils/services';
 const {width} = Dimensions.get('window');
 
@@ -66,7 +66,7 @@ export default class VisualForm extends Component {
     });
   }
   getDoubanDetail(id) {
-    get('https://api.douban.com/v2/movie/subject/'+id+'?apikey=0df993c66c0c636e29ecbb5344252a4a',(err,res)=>{
+    get(getDoubanDetailAPI(id),(err,res)=>{
       let visual = this.state.visual;
       visual.douban_id = res.id;
       visual.douban_rating = res.rating.average;
