@@ -10,7 +10,8 @@ const API_GET_IMDB_ID = API + 'visuals/get_imdb_id?douban_id='
 const API_IMDB_RATING = API+'visuals/get_imdb_rating?imdb_id='
 const API_UPSERT = API+'visual/submit';
 
-const API_DOUBAN = 'https://api.douban.com/v2/movie/';
+// const API_DOUBAN = 'https://api.douban.com/v2/movie/';
+const API_DOUBAN = 'http://t.yushu.im';
 const API_DOUBAN_DETAIL = API_DOUBAN+'subject/{id}'+API_DOUBAN_KEY;
 const API_DOUBAN_DETAIL_PHOTO = API_DOUBAN+'subject/{id}/photos'+API_DOUBAN_KEY;
 const API_DOUBAN_DETAIL_REVIEWS = API_DOUBAN+'subject/{id}/reviews'+API_DOUBAN_KEY;
