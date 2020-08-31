@@ -31,7 +31,7 @@ export default class VisualDetail extends Component {
     get(API_DETAIL+visual.id,(err,res)=> {
       var doubanId = res.result.douban_id;
       this.getDoubanDetail(doubanId);
-      this.getPhotos(doubanId)
+      // this.getPhotos(doubanId)
       this.setState({
         visual: res.result
       })
@@ -45,6 +45,7 @@ export default class VisualDetail extends Component {
   getDoubanDetail(id) {
     const url = API_DOUBAN_DETAIL.replace('{id}',id);
     get(url, (err, res)=> {
+      console.log(res);
       this.setState({douban:res});
     });
   }
@@ -93,13 +94,13 @@ export default class VisualDetail extends Component {
             // ItemSeparatorComponent={()=><View style={{width:10}}/>}
             horizontal
             data={douban.casts}
-            keyExtractor={item => item.id.toString()}
+            keyExtractor={(item, index) => 'key'+index}
             renderItem={({item}) =>
               <View style={styles.avtContainer}>
-                <Image resizeMode="contain" style={styles.avt} source={{uri:item.avatars.large}}/>
+                <Image resizeMode="contain" style={styles.avt} source={{uri:item.avt}}/>
                 <View style={styles.avtName}>
                   <Text>{item.name}</Text>
-                  <Text>{item.name_en}</Text>
+                  <Text>{item.role}</Text>
                 </View>
               </View>
             }
