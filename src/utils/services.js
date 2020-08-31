@@ -42,31 +42,23 @@ export function post(url, data, cb) {
 export function updateVisual(visual, cb) {
   get(getDoubanDetailAPI(visual.douban_id), (err, d) => {
     if (!d || err) return cb(err,null);
-    if (rating = d.rating.average) {
+    if (rating = d.douban_rating) {
       visual.douban_rating = rating;
     }
     if (website = d.website) {
       visual.website = website;
     }
-    if (release_date = d.pubdate) {
-      visual.release_date = release_date;
-    }
-    if (episodes = d.episodes_count) {
+    if (episodes = d.episodes) {
       visual.episodes = episodes;
     }
-    if (imdb_id = visual.imdb_id) {
-      get(getImdbRatingAPI(imdb_id), (err, imdb) => {
-        if (imdb_rating = imdb.imdb_rating) {
-          visual.imdb_rating = imdb_rating;
-        }
-        post(API_UPSERT, visual, (err, ret) => {
-          return cb(err, ret);
-        });
-      });
-    } else {
-      post(API_UPSERT, visual, (err, ret) => {
-        return cb(err, ret);
-      });
+    if (imdb_rating = d.imdb_rating) {
+      visual.imdb_rating = imdb_rating;
     }
+    if (imdb_id = d.imdb_id) {
+      visual.imdb_id = imdb_id;
+    }
+    post(API_UPSERT, visual, (err, ret) => {
+      return cb(err, d);
+    });
   });
 };
