@@ -36,7 +36,7 @@ export function post(url, data, cb) {
     url,
     data: qs.stringify(data)//for django request post issue
   }).then(res => {
-    return cb(null, res);
+    return cb(null, res.data);
   });
 }
 export function updateVisual(visual, cb) {
