@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TextInput, Image,Button, TouchableOpacity,Dimensions} from 'react-native';
 import { ScrollView, FlatList } from 'react-native-gesture-handler';
-import {getDoubanDetailAPI,API_DETAIL,API_GET_IMDB_ID,API_UPSERT} from '../utils/constants';
+import {API_DOUBAN_DETAIL,API_DETAIL,API_GET_IMDB_ID,API_UPSERT} from '../utils/constants';
 import {post,get} from '../utils/services';
 const {width} = Dimensions.get('window');
 
@@ -66,23 +66,24 @@ export default class VisualForm extends Component {
     });
   }
   getDoubanDetail(id) {
-    get(getDoubanDetailAPI(id),(err,res)=>{
+    post(API_DOUBAN_DETAIL,{douban_id:id},(err,res)=>{
+      console.log(res.release_dates);
       let visual = this.state.visual;
-      visual.douban_id = res.id;
-      visual.douban_rating = res.rating.average;
+      visual.douban_id = res.douban_id;
       visual.title = res.title;
       visual.original_title = res.original_title;
-      visual.douban_rating = res.rating.average || 0;
+      visual.douban_rating = res.douban_rating || 0;
       visual.summary = res.summary;
       visual.episodes = res.episodes_count || 1;
       visual.visual_type = res.subtype;
-      visual.poster = res.images.large;
+      visual.poster = res.poster || res.douban_poster;
       visual.languages = res.languages;
       visual.countries = res.countries;
-      visual.release_date = res.pubdates[0];
-      if (res.durations.length > 0) {
-        visual.duration = res.durations[0];
-      }
+      visual.release_date = res.release_dates[0];
+      visual.imdb_id = res.imdb_id;
+      visual.imdb_rating = visual.imdb_rating;
+      visual.duration = res.duration;
+      visual.website = res.website;
 			this.setState({
         visual,
         view:'form',
