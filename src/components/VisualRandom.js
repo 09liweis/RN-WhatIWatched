@@ -41,9 +41,9 @@ export default class VisualRandom extends Component {
       this.setState({visual:res.result,loading:false}, () => {
         const {visual} = this.state;
         // update visual when visual douban_id or imdb_id is available
-        updateVisual(visual, (err, ret) => {
+        // updateVisual(visual, (err, ret) => {
           
-        });
+        // });
       });
     });
   }
