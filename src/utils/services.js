@@ -1,4 +1,4 @@
-import {getDoubanDetailAPI, getImdbRatingAPI, API_UPSERT} from './constants';
+import {API_DOUBAN_DETAIL, getImdbRatingAPI, API_UPSERT} from './constants';
 import axios from 'axios';
 import qs from 'qs'
 
@@ -40,11 +40,9 @@ export function post(url, data, cb) {
   });
 }
 export function updateVisual(visual, cb) {
-  get(getDoubanDetailAPI(visual.douban_id), (err, d) => {
+  post(API_DOUBAN_DETAIL,{douban_id:visual.douban_id}, (err, d) => {
     if (!d || err) return cb(err,null);
-    if (rating = d.douban_rating) {
-      visual.douban_rating = rating;
-    }
+    visual.douban_rating = d.douban_rating;
     if (website = d.website) {
       visual.website = website;
     }
