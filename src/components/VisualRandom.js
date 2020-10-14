@@ -17,7 +17,8 @@ export default class VisualRandom extends Component {
     this.state = {
       visual:{},
       loading: false,
-      countdown: 0
+      countdown: 0,
+      updating: false,
     };
   }
   componentDidMount() {
@@ -41,8 +42,10 @@ export default class VisualRandom extends Component {
       this.setState({visual:res.result,loading:false}, () => {
         const {visual} = this.state;
         // update visual when visual douban_id or imdb_id is available
+        this.setState({updating:true});
         updateVisual(visual, (err, ret) => {
           console.log(ret);
+          this.setState({updating:false});
         });
       });
     });
@@ -53,7 +56,7 @@ export default class VisualRandom extends Component {
   }
   render() {
     const {navigation} = this.props;
-    const {visual, loading, countdown} = this.state;
+    const {visual, loading, countdown, updating} = this.state;
     const countDownStyle = styles.countDown;
     countDownStyle.width = countdown;
     let visualView;
@@ -62,7 +65,7 @@ export default class VisualRandom extends Component {
         <TouchableOpacity onPress={() => navigation.navigate('VisualDetail',{id:visual.id,title:visual.title})}>
           <VisualBasic visual={visual} />
           <View style={countDownStyle}>
-            <Text>{countdown}</Text>
+            <Text>{countdown} {(updating)?'Updating':''}</Text>
           </View>
         </TouchableOpacity>
       );
