@@ -15,7 +15,7 @@ const API_UPSERT = API+'visual/submit';
 // const API_DOUBAN_DETAIL_PHOTO = API_DOUBAN+'subject/{id}/photos'+API_DOUBAN_KEY;
 // const API_DOUBAN_DETAIL_REVIEWS = API_DOUBAN+'subject/{id}/reviews'+API_DOUBAN_KEY;
 const API_DOUBAN = 'https://samliweisen.herokuapp.com/api/visuals/';
-const API_DOUBAN_DETAIL = API_DOUBAN + 'summary?douban_id={id}'
+const API_DOUBAN_DETAIL = API_DOUBAN + 'summary'
 
 const API_DOUBAN_USBO = API_DOUBAN+'us_box'+API_DOUBAN_KEY;
 const API_DOUBAN_INTHEATRE = API_DOUBAN+'in_theaters'+API_DOUBAN_KEY;
@@ -24,10 +24,6 @@ const API_DOUBAN_UPCOMING = API_DOUBAN+'coming_soon?apikey=0b2bdeda43b5688921839
 
 const API_MAOYAN = 'https://piaofang.maoyan.com/second-box';
 const API_MAOYAN_DETAIL = 'http://m.maoyan.com/ajax/detailmovie?movieId={id}'
-
-function getDoubanDetailAPI(id) {
-  return API_DOUBAN_DETAIL.replace('{id}', id);
-}
 
 function getImdbRatingAPI(id) {
   return API_IMDB_RATING + id;
@@ -42,7 +38,6 @@ export {
   API_SEARCH,
   API_INCREASE_EPISODE,
   API_DOUBAN_DETAIL,
-  getDoubanDetailAPI,
   getImdbRatingAPI,
   // API_DOUBAN_DETAIL_PHOTO,
   // API_DOUBAN_DETAIL_REVIEWS,
