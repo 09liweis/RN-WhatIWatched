@@ -74,14 +74,14 @@ export default class VisualForm extends Component {
       visual.original_title = res.original_title;
       visual.douban_rating = res.douban_rating || 0;
       visual.summary = res.summary;
-      visual.episodes = res.episodes_count || 1;
-      visual.visual_type = res.subtype;
+      visual.episodes = res.episodes || 1;
+      visual.visual_type = res.episodes > 1 ? 'tv' : 'movie';
       visual.poster = res.poster || res.douban_poster;
       visual.languages = res.languages;
       visual.countries = res.countries;
       visual.release_date = res.release_dates[0];
       visual.imdb_id = res.imdb_id;
-      visual.imdb_rating = visual.imdb_rating;
+      visual.imdb_rating = res.imdb_rating;
       visual.duration = res.duration;
       visual.website = res.website;
 			this.setState({
