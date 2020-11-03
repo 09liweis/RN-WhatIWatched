@@ -74,14 +74,16 @@ export default class VisualDetail extends Component {
       res = (
         <ScrollView>
           <VisualBasic visual={v} />
-          <Button 
-            onPress={this.increaseEpisode}
-            title="Increate Episode"
-          />
-          <Button 
-            onPress={this.edit}
-            title="Edit"
-          />
+          <View style={styles.btns}>
+            <Button style={styles.btn}
+              onPress={this.increaseEpisode}
+              title="+1 Episode"
+            />
+            <Button style={styles.btn}
+              onPress={this.edit}
+              title="Edit"
+            />
+          </View>
           <Text style={styles.summary}>{v.summary}</Text>
           {(douban.casts && douban.casts.length > 0)?
           <FlatList
@@ -144,6 +146,15 @@ const styles = StyleSheet.create({
   },
   avtName:{
     padding:5
+  },
+  btns: {
+    marginTop: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  btn: {
+    width: '48%',
+    borderRadius: 10
   },
   photoContainer:{
     width:width/4
