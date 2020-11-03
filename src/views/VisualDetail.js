@@ -30,9 +30,9 @@ export default class VisualDetail extends Component {
     const {visual} = this.state;
     get(API_DETAIL+visual.id,(err,res)=> {
       var visual = res.result;
-      updateVisual(visual,(err,douban)=>{
-        this.setState({douban});
-      });
+      // updateVisual(visual,(err,douban)=>{
+      //   this.setState({douban});
+      // });
       // this.getPhotos(doubanId)
       this.setState({
         visual
