@@ -16,6 +16,7 @@ const API_UPSERT = API+'visual/submit';
 // const API_DOUBAN_DETAIL_REVIEWS = API_DOUBAN+'subject/{id}/reviews'+API_DOUBAN_KEY;
 const API_DOUBAN = 'https://samliweisen.herokuapp.com/api/visuals/';
 const API_DOUBAN_DETAIL = API_DOUBAN + 'summary'
+const API_DOUBAN_SEARCH = API_DOUBAN + 'search'
 
 const API_DOUBAN_USBO = API_DOUBAN+'us_box'+API_DOUBAN_KEY;
 const API_DOUBAN_INTHEATRE = API_DOUBAN+'in_theaters'+API_DOUBAN_KEY;
@@ -41,6 +42,7 @@ export {
   getImdbRatingAPI,
   // API_DOUBAN_DETAIL_PHOTO,
   // API_DOUBAN_DETAIL_REVIEWS,
+  API_DOUBAN_SEARCH,
   API_DOUBAN_USBO,
   API_DOUBAN_UPCOMING,
   API_DOUBAN_INTHEATRE,
