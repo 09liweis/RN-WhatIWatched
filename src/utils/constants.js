@@ -4,6 +4,7 @@ const API_STATS = API + 'stats';
 const API_RANDOM = API + 'random_visual/';
 const API_LIST = API + 'visuals/';
 const API_DETAIL = API + 'visual/';
+const API_DELETE = API_DETAIL + 'delete/';
 const API_INCREASE_EPISODE = API_DETAIL +'increase_episode?id=';
 const API_SEARCH = API + 'search?keyword=';
 const API_GET_IMDB_ID = API + 'visuals/get_imdb_id?douban_id='
@@ -36,6 +37,7 @@ export {
   API_LIST,
   API_RANDOM,
   API_DETAIL,
+  API_DELETE,
   API_SEARCH,
   API_INCREASE_EPISODE,
   API_DOUBAN_DETAIL,
