@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TextInput, Image,Button, TouchableOpacity,Dimensions} from 'react-native';
 import { ScrollView, FlatList } from 'react-native-gesture-handler';
-import {API_DOUBAN_DETAIL,API_DETAIL,API_GET_IMDB_ID,API_UPSERT} from '../utils/constants';
+import {API_DOUBAN_DETAIL,API_DETAIL,API_GET_IMDB_ID,API_UPSERT,API_DOUBAN_SEARCH} from '../utils/constants';
 import {post,get} from '../utils/services';
 const {width} = Dimensions.get('window');
 
@@ -56,9 +56,9 @@ export default class VisualForm extends Component {
     })
   }
   getSearch(q) {
-    get('https://movie.douban.com/j/subject_suggest?q='+q,(err,res) => {
+    post(API_DOUBAN_SEARCH,{keyword:q},(err,res) => {
       this.setState({
-        searchs: res
+        searchs: res.visuals
       })
     });
   }
@@ -143,22 +143,20 @@ export default class VisualForm extends Component {
       </ScrollView>
     );
     if (view == 'search') {
-      console.log(searchs);
       pageView = (
         <View>
           <TextInput onChangeText={(val)=>this.setState({q:val})}/>
           <Button title="search" onPress={()=>this.getSearch(q)}/>
           <FlatList
             data={searchs}
-            keyExtractor={item => item.id}
+            keyExtractor={item => item.douban_id}
             renderItem={({item}) => 
-              <TouchableOpacity onPress={()=>this.getDoubanDetail(item.id)}>
+              <TouchableOpacity onPress={()=>this.getDoubanDetail(item.douban_id)}>
                 <View style={styles.searchResult}>
-                  <Image style={styles.searchResultImg} source={{uri:item.img}}/>
+                  <Image style={styles.searchResultImg} source={{uri:item.poster}}/>
                   <View style={styles.searchResultDetail}>
-                    <Text>{item.title}</Text>
-                    <Text>{item.year}</Text>
-                    <Text>{item.sub_title}</Text>
+                    <Text>{item.name}</Text>
+                    <Text>{item.rating}</Text>
                   </View>
                 </View>
               </TouchableOpacity>
