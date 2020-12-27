@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text,ScrollView,View, Image, TouchableOpacity, Button,Dimensions} from 'react-native';
-import {API_DETAIL,API_INCREASE_EPISODE,API_DOUBAN_DETAIL,API_DOUBAN_DETAIL_PHOTO} from '../utils/constants.js'
+import {API_DETAIL,API_INCREASE_EPISODE,API_DOUBAN_DETAIL,API_DOUBAN_DETAIL_PHOTO,API_DELETE} from '../utils/constants.js'
 import { FlatList } from 'react-native-gesture-handler';
 import VisualBasic from '../components/VisualBasic.js';
-import {get,updateVisual} from '../utils/services';
+import {get,post,updateVisual} from '../utils/services';
 const {width} = Dimensions.get('window');
 
 export default class VisualDetail extends Component {
@@ -24,6 +24,7 @@ export default class VisualDetail extends Component {
       photos:[]
 		}
     this.increaseEpisode = this.increaseEpisode.bind(this)
+    this.delete = this.delete.bind(this)
     this.edit = this.edit.bind(this);
 	}
 	componentDidMount() {
@@ -64,13 +65,21 @@ export default class VisualDetail extends Component {
     const {navigation} = this.props;
     navigation.navigate('VisualForm',{visualId: visual.id})
   }
+  delete() {
+    const {id} = this.state.visual;
+    post(API_DELETE,{id},(err,ret)=>{
+      if (ret.status == 200) {
+        this.props.navigation.goBack(null);
+      }
+    });
+  }
   render() {
     const {visual,douban,photos} = this.state;
     const v = visual;
     let res = (
       <Text>Loading</Text>
     );
-    if (v.title) {
+    if (v.id) {
       res = (
         <ScrollView>
           <VisualBasic visual={v} />
@@ -82,6 +91,10 @@ export default class VisualDetail extends Component {
             <Button style={styles.btn}
               onPress={this.edit}
               title="Edit"
+            />
+            <Button style={styles.btn}
+              onPress={this.delete}
+              title="Delete"
             />
           </View>
           <Text style={styles.summary}>{v.summary}</Text>
