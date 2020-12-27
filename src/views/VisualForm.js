@@ -5,9 +5,6 @@ import {API_DOUBAN_DETAIL,API_DETAIL,API_GET_IMDB_ID,API_UPSERT} from '../utils/
 import {post,get} from '../utils/services';
 const {width} = Dimensions.get('window');
 
-import axios from 'axios';
-import qs from 'qs'
-
 export default class VisualForm extends Component {
 	static navigationOptions = {
     title: 'Visual Form',
@@ -67,14 +64,13 @@ export default class VisualForm extends Component {
   }
   getDoubanDetail(id) {
     post(API_DOUBAN_DETAIL,{douban_id:id},(err,res)=>{
-      console.log(res.release_dates);
       let visual = this.state.visual;
       visual.douban_id = res.douban_id;
       visual.title = res.title;
       visual.original_title = res.original_title;
-      visual.douban_rating = res.douban_rating || 0;
+      visual.douban_rating = res.douban_rating;
       visual.summary = res.summary;
-      visual.episodes = res.episodes || 1;
+      visual.episodes = res.episodes;
       visual.visual_type = res.episodes > 1 ? 'tv' : 'movie';
       visual.poster = res.poster || res.douban_poster;
       visual.languages = res.languages;
