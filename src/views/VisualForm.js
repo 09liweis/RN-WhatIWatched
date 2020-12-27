@@ -75,7 +75,9 @@ export default class VisualForm extends Component {
       visual.poster = res.poster || res.douban_poster;
       visual.languages = res.languages;
       visual.countries = res.countries;
-      visual.release_date = res.release_dates[0];
+      if (date = res.release_dates[0]) {
+        visual.release_date = date.substr(0,10);
+      }
       visual.imdb_id = res.imdb_id;
       visual.imdb_rating = res.imdb_rating;
       visual.duration = res.duration;
