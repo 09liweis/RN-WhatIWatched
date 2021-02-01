@@ -3,6 +3,7 @@ import {Platform, StyleSheet, Text,ScrollView,View, Image, TouchableOpacity, But
 import VisualRandom from '../components/VisualRandom'
 import { API_STATS } from '../utils/constants.js'
 import { get } from '../utils/services.js';
+const {height} = Dimensions.get('window');
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -31,7 +32,7 @@ export default class Dashboard extends Component {
           <Text style={[styles.statsBlock]}>Movie: {stats.movie}</Text>
           <Text style={[styles.statsBlock]}>TV: {stats.tv}</Text>
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate('VisualForm')}>
+        <TouchableOpacity style={styles.addNewContainer} onPress={() => navigation.navigate('VisualForm')}>
           <Text style={styles.addNew}>Add New</Text>
         </TouchableOpacity>
       </View>
@@ -41,15 +42,22 @@ export default class Dashboard extends Component {
 
 const styles = StyleSheet.create({
   pageContainer: {
-    padding: 10
+    padding: 10,
+    height: height
+  },
+  addNewContainer: {
+    position: 'absolute',
+    bottom: 100,
+    right: 20
   },
   addNew: {
     marginTop: 10,
     backgroundColor: '#5a62b3',
     padding: 10,
     color: '#fff',
-    borderRadius: 5,
-    textAlign: 'center'
+    borderRadius: 100,
+    textAlign: 'center',
+    width: 50
   },
   viewTitle: {
     fontSize: 30,
