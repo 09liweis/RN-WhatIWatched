@@ -24,7 +24,7 @@ const API_DOUBAN_INTHEATRE = API_DOUBAN+'in_theaters'+API_DOUBAN_KEY;
 const API_DOUBAN_TOP250 = API_DOUBAN+'top250'+API_DOUBAN_KEY;
 const API_DOUBAN_UPCOMING = API_DOUBAN+'coming_soon?apikey=0b2bdeda43b5688921839c8ecb20399b'
 
-const API_MAOYAN = 'https://piaofang.maoyan.com/second-box';
+const API_MAOYAN = 'https://piaofang.maoyan.com/dashboard-ajax/movie';
 const API_MAOYAN_DETAIL = 'http://m.maoyan.com/ajax/detailmovie?movieId={id}'
 
 function getImdbRatingAPI(id) {
