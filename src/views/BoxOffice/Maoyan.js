@@ -11,20 +11,21 @@ export default class Maoyan extends Component {
       maoyan: {},
       movies:[],
       loading:false,
+      initial:false
     }
   }
   componentDidMount() {
     this.getMaoyan()
-    setInterval(()=>{
-      this.getMaoyan();
-    },10000);
+    // setInterval(()=>{
+    //   this.getMaoyan();
+    // },10000);
   }
   getMaoyan(){
-    if (this.state.movies.length == 0) {
+    if (this.state.initial == false) {
       this.setState({loading:true});
     }
     post(API_MAOYAN,{},(err,ret)=> {
-      this.setState({movies:ret.movies,loading:false});
+      this.setState({movies:ret.movies,loading:false,initial:true});
     })
   }
   render() {
