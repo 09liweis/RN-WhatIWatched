@@ -1,5 +1,5 @@
 const API_DOUBAN_KEY = '?apikey=0df993c66c0c636e29ecbb5344252a4a';
-const API = 'https://what-i-watched.herokuapp.com/api/';
+const API = 'http://what-i-watched.herokuapp.com/api/'; //China only support http
 const API_STATS = API + 'stats';
 const API_RANDOM = API + 'random_visual/';
 const API_LIST = API + 'visuals/';
@@ -15,7 +15,7 @@ const API_UPSERT = API+'visual/submit';
 // const API_DOUBAN_DETAIL = API_DOUBAN+'subject/{id}'+API_DOUBAN_KEY;
 // const API_DOUBAN_DETAIL_PHOTO = API_DOUBAN+'subject/{id}/photos'+API_DOUBAN_KEY;
 // const API_DOUBAN_DETAIL_REVIEWS = API_DOUBAN+'subject/{id}/reviews'+API_DOUBAN_KEY;
-const API_DOUBAN = 'https://samliweisen.herokuapp.com/api/visuals/';
+const API_DOUBAN = 'http://samliweisen.herokuapp.com/api/visuals/';
 const API_DOUBAN_DETAIL = API_DOUBAN + 'summary'
 const API_DOUBAN_SEARCH = API_DOUBAN + 'search'
 
